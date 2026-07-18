@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
   images: { unoptimized: true },
   trailingSlash: true,
   // Remove basePath if using a custom domain
-  basePath: isProd ? "/Gustavo-Philipe__40-anos" : "",
-  assetPrefix: isProd ? "/Gustavo-Philipe__40-anos" : "",
+  basePath: isProd ? "/partiu-orlando" : "",
+  assetPrefix: isProd ? "/partiu-orlando" : "",
 };
 
 export default nextConfig;
