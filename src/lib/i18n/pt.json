@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "schedule": "Programação",
+    "arrivals": "Chegadas",
+    "activities": "Atividades",
+    "house": "A Casa",
+    "cars": "Carros",
+    "explore": "Por Conta Própria",
+    "admin": "Admin",
+    "logout": "Sair"
+  },
+  "home": {
+    "title": "Partiu Orlando! 🌴",
+    "subtitle": "Aniversário do Gustavo & Philipe",
+    "countdown_label": "dias para a viagem",
+    "arrivals_prompt": "Ainda não preencheram a chegada:"
+  },
+  "login": {
+    "title": "Entrar",
+    "email": "E-mail",
+    "password": "Senha",
+    "submit": "Entrar",
+    "error": "E-mail ou senha incorretos"
+  },
+  "arrivals": {
+    "title": "Chegadas",
+    "name": "Nome",
+    "arrival": "Chegada",
+    "departure": "Saída",
+    "notes": "Observações",
+    "edit": "Editar",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "not_filled": "Não preenchido"
+  },
+  "activities": {
+    "title": "Atividades",
+    "cost": "Custo por pessoa",
+    "signup": "Vou!",
+    "unsign": "Não vou mais",
+    "attendees": "Confirmados",
+    "total": "total",
+    "buy_tickets": "Comprar ingressos",
+    "no_activities": "Nenhuma atividade cadastrada ainda.",
+    "plus_guests": "acompanhantes"
+  },
+  "admin": {
+    "title": "Admin",
+    "users": "Usuários",
+    "activities": "Atividades",
+    "content": "Conteúdo",
+    "name": "Nome",
+    "email": "E-mail",
+    "save": "Salvar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "cancel": "Cancelar",
+    "create_activity": "Nova atividade",
+    "activity_title": "Título",
+    "activity_date": "Data",
+    "activity_time": "Horário (opcional)",
+    "cost_per_person": "Custo por pessoa (R$)",
+    "cost_notes": "Notas sobre custo",
+    "ticket_url": "Link para ingressos",
+    "display_order": "Ordem de exibição",
+    "description": "Descrição",
+    "edit_content": "Editar conteúdo",
+    "user_creation_note": "Para criar novos usuários, acesse o painel do Supabase → Authentication → Users → Add user. Use a senha orlando2026. O perfil é criado automaticamente."
+  },
+  "common": {
+    "loading": "Carregando...",
+    "error": "Erro ao carregar dados",
+    "confirm_delete": "Tem certeza? Esta ação não pode ser desfeita.",
+    "saved": "Salvo!",
+    "no_data": "Nenhum dado encontrado."
+  }
+}

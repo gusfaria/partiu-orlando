@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "schedule": "Schedule",
+    "arrivals": "Arrivals",
+    "activities": "Activities",
+    "house": "The House",
+    "cars": "Cars",
+    "explore": "On Your Own",
+    "admin": "Admin",
+    "logout": "Logout"
+  },
+  "home": {
+    "title": "Partiu Orlando! 🌴",
+    "subtitle": "Gustavo & Philipe's Birthday",
+    "countdown_label": "days until the trip",
+    "arrivals_prompt": "Haven't filled in their arrival yet:"
+  },
+  "login": {
+    "title": "Sign In",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign In",
+    "error": "Incorrect email or password"
+  },
+  "arrivals": {
+    "title": "Arrivals",
+    "name": "Name",
+    "arrival": "Arrival",
+    "departure": "Departure",
+    "notes": "Notes",
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "not_filled": "Not filled"
+  },
+  "activities": {
+    "title": "Activities",
+    "cost": "Cost per person",
+    "signup": "I'm in!",
+    "unsign": "I'm out",
+    "attendees": "Confirmed",
+    "total": "total",
+    "buy_tickets": "Buy tickets",
+    "no_activities": "No activities added yet.",
+    "plus_guests": "guests"
+  },
+  "admin": {
+    "title": "Admin",
+    "users": "Users",
+    "activities": "Activities",
+    "content": "Content",
+    "name": "Name",
+    "email": "Email",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "create_activity": "New activity",
+    "activity_title": "Title",
+    "activity_date": "Date",
+    "activity_time": "Time (optional)",
+    "cost_per_person": "Cost per person ($)",
+    "cost_notes": "Cost notes",
+    "ticket_url": "Ticket link",
+    "display_order": "Display order",
+    "description": "Description",
+    "edit_content": "Edit content",
+    "user_creation_note": "To create new users, go to the Supabase dashboard → Authentication → Users → Add user. Use password orlando2026. The profile is created automatically."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error loading data",
+    "confirm_delete": "Are you sure? This cannot be undone.",
+    "saved": "Saved!",
+    "no_data": "No data found."
+  }
+}
