@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { I18nProvider } from '@/lib/i18n/context'
 import { AuthProvider } from '@/lib/auth-context'
+import { Nav } from '@/components/Nav'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +18,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${inter.className} bg-gray-50 min-h-screen`}>
         <I18nProvider>
           <AuthProvider>
-            {children}
+            <Nav />
+            <main className="max-w-6xl mx-auto px-4 py-6">{children}</main>
           </AuthProvider>
         </I18nProvider>
       </body>
