@@ -32,6 +32,7 @@ export type ActivitySignup = {
   id: string
   activity_id: string
   user_id: string
+  plus_guests: number
   created_at: string
 }
 
