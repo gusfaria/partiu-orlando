@@ -7,6 +7,7 @@
     "cars": "Cars",
     "explore": "On Your Own",
     "admin": "Admin",
+    "profile": "My Profile",
     "logout": "Logout"
   },
   "home": {
@@ -44,6 +45,26 @@
     "no_activities": "No activities added yet.",
     "plus_guests": "guests"
   },
+  "profile": {
+    "title": "My Profile",
+    "photo": "Photo",
+    "upload": "Upload photo",
+    "uploading": "Uploading...",
+    "name": "Name",
+    "color": "Avatar color",
+    "save": "Save",
+    "saved": "Saved!",
+    "invalid_file": "Invalid file — use an image up to 20 MB"
+  },
+  "dashboard": {
+    "facts_title": "Trip info",
+    "facts_dates": "October 9–18, 2026",
+    "facts_address": "Solara Resort — 8923 Coconut Breeze Dr, Kissimmee, FL",
+    "facts_house_link": "See house details →",
+    "checklist_title": "Almost there!",
+    "checklist_photo": "📸 Add your photo",
+    "checklist_arrival": "✈️ Fill in your arrival dates"
+  },
   "admin": {
     "title": "Admin",
     "users": "Users",
@@ -65,7 +86,14 @@
     "display_order": "Display order",
     "description": "Description",
     "edit_content": "Edit content",
-    "user_creation_note": "To create new users, go to the Supabase dashboard → Authentication → Users → Add user. Use password orlando2026. The profile is created automatically."
+    "user_creation_note": "To create new users, go to the Supabase dashboard → Authentication → Users → Add user. Use password orlando2026. The profile is created automatically.",
+    "photos": "Photos",
+    "photos_house": "House",
+    "photos_cars": "Cars",
+    "photos_hero": "Cover",
+    "photos_upload": "Upload photos",
+    "photos_caption": "Caption",
+    "photos_hero_note": "Only the first photo appears on the home page."
   },
   "common": {
     "loading": "Loading...",

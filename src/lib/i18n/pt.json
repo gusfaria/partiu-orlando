@@ -7,6 +7,7 @@
     "cars": "Carros",
     "explore": "Por Conta Própria",
     "admin": "Admin",
+    "profile": "Meu Perfil",
     "logout": "Sair"
   },
   "home": {
@@ -44,6 +45,26 @@
     "no_activities": "Nenhuma atividade cadastrada ainda.",
     "plus_guests": "acompanhantes"
   },
+  "profile": {
+    "title": "Meu Perfil",
+    "photo": "Foto",
+    "upload": "Enviar foto",
+    "uploading": "Enviando...",
+    "name": "Nome",
+    "color": "Cor do avatar",
+    "save": "Salvar",
+    "saved": "Salvo!",
+    "invalid_file": "Arquivo inválido — use uma imagem de até 20 MB"
+  },
+  "dashboard": {
+    "facts_title": "Informações da viagem",
+    "facts_dates": "9 a 18 de outubro de 2026",
+    "facts_address": "Solara Resort — 8923 Coconut Breeze Dr, Kissimmee, FL",
+    "facts_house_link": "Ver detalhes da casa →",
+    "checklist_title": "Falta pouco!",
+    "checklist_photo": "📸 Adicione sua foto",
+    "checklist_arrival": "✈️ Preencha suas datas de chegada"
+  },
   "admin": {
     "title": "Admin",
     "users": "Usuários",
@@ -65,7 +86,14 @@
     "display_order": "Ordem de exibição",
     "description": "Descrição",
     "edit_content": "Editar conteúdo",
-    "user_creation_note": "Para criar novos usuários, acesse o painel do Supabase → Authentication → Users → Add user. Use a senha orlando2026. O perfil é criado automaticamente."
+    "user_creation_note": "Para criar novos usuários, acesse o painel do Supabase → Authentication → Users → Add user. Use a senha orlando2026. O perfil é criado automaticamente.",
+    "photos": "Fotos",
+    "photos_house": "Casa",
+    "photos_cars": "Carros",
+    "photos_hero": "Capa",
+    "photos_upload": "Enviar fotos",
+    "photos_caption": "Legenda",
+    "photos_hero_note": "Apenas a primeira foto aparece na página inicial."
   },
   "common": {
     "loading": "Carregando...",
