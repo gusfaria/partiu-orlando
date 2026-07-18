@@ -3,6 +3,7 @@ export type Profile = {
   name: string
   is_admin: boolean
   avatar_color: string
+  avatar_url: string | null
   created_at: string
 }
 
@@ -49,4 +50,13 @@ export type ActivityWithSignups = Activity & {
 
 export type ProfileWithArrival = Profile & {
   arrivals: Arrival[]
+}
+
+export type SitePhoto = {
+  id: string
+  section: 'house' | 'cars' | 'hero'
+  storage_path: string
+  caption: string | null
+  display_order: number
+  created_at: string
 }
