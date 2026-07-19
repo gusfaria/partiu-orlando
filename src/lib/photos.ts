@@ -26,14 +26,18 @@ export async function uploadSitePhoto(section: SitePhoto['section'], file: File)
   const { error } = await supabase.storage.from('photos')
     .upload(path, blob, { contentType: 'image/jpeg' })
   if (error) throw error
+  const { data: maxRow } = await supabase.from('site_photos')
+    .select('display_order').eq('section', section)
+    .order('display_order', { ascending: false }).limit(1).maybeSingle()
+  const nextOrder = (maxRow?.display_order ?? -1) + 1
   const { error: dbError } = await supabase.from('site_photos')
-    .insert({ section, storage_path: path })
+    .insert({ section, storage_path: path, display_order: nextOrder })
   if (dbError) throw dbError
 }
 
 export async function listSitePhotos(section: SitePhoto['section']): Promise<SitePhoto[]> {
   const { data } = await supabase.from('site_photos')
-    .select('*').eq('section', section).order('display_order')
+    .select('*').eq('section', section).order('display_order').order('created_at')
   return data ?? []
 }
 
