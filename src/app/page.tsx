@@ -37,7 +37,7 @@ function HomePage() {
           <div className="flex flex-wrap gap-3">
             {missing.map(p => (
               <div key={p.id} className="flex items-center gap-2">
-                <AvatarCircle name={p.name} color={p.avatar_color} size="sm" />
+                <AvatarCircle name={p.name} color={p.avatar_color} avatarUrl={p.avatar_url} size="sm" />
                 <span className="text-sm text-gray-700">{p.name}</span>
               </div>
             ))}

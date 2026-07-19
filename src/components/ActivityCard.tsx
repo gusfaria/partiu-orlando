@@ -108,6 +108,7 @@ export function ActivityCard({ activity, isSignedUp, myPlusGuests, onToggle, onP
                 <AvatarCircle
                   name={s.profiles.name}
                   color={s.profiles.avatar_color}
+                  avatarUrl={s.profiles.avatar_url}
                   size="sm"
                 />
                 {s.plus_guests > 0 && (

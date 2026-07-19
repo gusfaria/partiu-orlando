@@ -70,7 +70,7 @@ export default function AdminUsersPage() {
           ) : (
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <AvatarCircle name={p.name} color={p.avatar_color} />
+                <AvatarCircle name={p.name} color={p.avatar_color} avatarUrl={p.avatar_url} />
                 <div>
                   <p className="font-semibold text-gray-900">{p.name}</p>
                   {p.is_admin && <p className="text-xs text-orange-500">admin</p>}

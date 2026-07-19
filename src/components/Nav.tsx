@@ -53,7 +53,9 @@ export function Nav() {
           >
             {lang === 'pt' ? 'EN' : 'PT'}
           </button>
-          <AvatarCircle name={profile.name} color={profile.avatar_color} />
+          <Link href="/profile" title={t.nav.profile}>
+            <AvatarCircle name={profile.name} color={profile.avatar_color} avatarUrl={profile.avatar_url} />
+          </Link>
           <button
             onClick={signOut}
             className="hidden md:block text-sm text-gray-400 hover:text-gray-700"

@@ -75,7 +75,7 @@ function ArrivalsPage() {
             {editingId === row.id ? (
               <div className="space-y-3">
                 <div className="flex items-center gap-3 mb-2">
-                  <AvatarCircle name={row.name} color={row.avatar_color} />
+                  <AvatarCircle name={row.name} color={row.avatar_color} avatarUrl={row.avatar_url} />
                   <span className="font-semibold text-gray-900">{row.name}</span>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
@@ -112,7 +112,7 @@ function ArrivalsPage() {
             ) : (
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-3 min-w-0">
-                  <AvatarCircle name={row.name} color={row.avatar_color} />
+                  <AvatarCircle name={row.name} color={row.avatar_color} avatarUrl={row.avatar_url} />
                   <div className="min-w-0">
                     <p className="font-semibold text-gray-900">{row.name}</p>
                     <p className="text-sm text-gray-500">
