@@ -1,39 +1,72 @@
 'use client'
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { useI18n } from '@/lib/i18n/context'
 import { useAuth } from '@/lib/auth-context'
 import { supabase } from '@/lib/supabase'
+import { listSitePhotos, publicUrl } from '@/lib/photos'
+import { checklistItems } from '@/lib/checklist'
 import { Countdown } from '@/components/Countdown'
 import { AvatarCircle } from '@/components/AvatarCircle'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
-import type { Profile, Arrival } from '@/types/database'
+import type { Profile, Arrival, SitePhoto } from '@/types/database'
 
 function HomePage() {
   const { t } = useI18n()
   const { profile } = useAuth()
   const [profiles, setProfiles] = useState<Profile[]>([])
   const [arrivals, setArrivals] = useState<Arrival[]>([])
+  const [hero, setHero] = useState<SitePhoto | null>(null)
 
   useEffect(() => {
     supabase.from('profiles').select('*').then(({ data }) => setProfiles(data ?? []))
     supabase.from('arrivals').select('*').then(({ data }) => setArrivals(data ?? []))
+    listSitePhotos('hero').then(ps => setHero(ps[0] ?? null))
   }, [])
 
   const missing = profiles.filter(
     p => !arrivals.find(a => a.user_id === p.id && a.arrival_date)
   )
+  const myArrival = profile ? arrivals.find(a => a.user_id === profile.id) ?? null : null
+  const todo = profile ? checklistItems(profile, myArrival) : []
+  const checklistLabels = { photo: t.dashboard.checklist_photo, arrival: t.dashboard.checklist_arrival }
 
   return (
     <div className="max-w-xl mx-auto">
-      <h1 className="text-4xl font-black text-center text-orange-500 mt-4">{t.home.title}</h1>
+      {hero && (
+        <img src={publicUrl('photos', hero.storage_path)} alt=""
+          className="w-full h-48 md:h-64 object-cover rounded-2xl mt-2" />
+      )}
+      <h1 className="text-4xl font-black text-center text-orange-500 mt-6">{t.home.title}</h1>
       <p className="text-center text-gray-400 mt-1">{t.home.subtitle}</p>
       <Countdown />
 
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+        <p className="text-sm font-semibold text-gray-900 mb-2">{t.dashboard.facts_title}</p>
+        <p className="text-sm text-gray-600">🗓️ {t.dashboard.facts_dates}</p>
+        <p className="text-sm text-gray-600 mt-1">📍 {t.dashboard.facts_address}</p>
+        <Link href="/house" className="inline-block text-sm text-orange-500 hover:underline font-medium mt-2">
+          {t.dashboard.facts_house_link}
+        </Link>
+      </div>
+
+      {todo.length > 0 && (
+        <div className="bg-orange-50 border border-orange-200 rounded-2xl p-5 mt-4">
+          <p className="text-sm font-semibold text-orange-800 mb-2">{t.dashboard.checklist_title}</p>
+          <div className="space-y-1.5">
+            {todo.map(item => (
+              <Link key={item.key} href={item.href}
+                className="block text-sm text-gray-700 hover:text-orange-600">
+                {checklistLabels[item.key]}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
       {missing.length > 0 && (
         <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 mt-4">
-          <p className="text-sm font-semibold text-amber-800 mb-3">
-            {t.home.arrivals_prompt}
-          </p>
+          <p className="text-sm font-semibold text-amber-800 mb-3">{t.home.arrivals_prompt}</p>
           <div className="flex flex-wrap gap-3">
             {missing.map(p => (
               <div key={p.id} className="flex items-center gap-2">
