@@ -12,7 +12,7 @@ const AVATAR_COLORS = ['#6366f1','#f59e0b','#10b981','#ef4444','#8b5cf6',
 
 function ProfilePage() {
   const { t } = useI18n()
-  const { profile } = useAuth()
+  const { profile, refreshProfile } = useAuth()
   const fileRef = useRef<HTMLInputElement>(null)
   const [avatarUrl, setAvatarUrl] = useState(profile?.avatar_url ?? null)
   const [name, setName] = useState(profile?.name ?? '')
@@ -29,6 +29,7 @@ function ProfilePage() {
     setBusy(true); setError('')
     try {
       setAvatarUrl(await uploadAvatar(profile.id, file))
+      await refreshProfile()
     } catch {
       setError(t.profile.invalid_file)
     }
@@ -38,6 +39,7 @@ function ProfilePage() {
   async function save() {
     setBusy(true)
     await supabase.from('profiles').update({ name, avatar_color: color }).eq('id', profile!.id)
+    await refreshProfile()
     setBusy(false)
     setSaved(true)
     setTimeout(() => setSaved(false), 2000)
