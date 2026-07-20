@@ -52,6 +52,22 @@ export type ProfileWithArrival = Profile & {
   arrivals: Arrival[]
 }
 
+export type Car = {
+  id: string
+  created_by: string | null
+  rental_company: string
+  location: string
+  pickup_date: string
+  dropoff_date: string
+  brand: string
+  color: string
+  seats: number
+  photo_path: string | null
+  created_at: string
+}
+
+export type CarWithCreator = Car & { profiles: Profile }
+
 export type SitePhoto = {
   id: string
   section: 'house' | 'cars' | 'hero'
