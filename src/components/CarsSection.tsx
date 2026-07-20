@@ -66,8 +66,9 @@ export function CarsSection() {
     try {
       let photoPath = existingPhotoPath
       if (photoFile) {
+        const newPath = await uploadCarPhoto(photoFile)
         if (existingPhotoPath) await deleteCarPhoto(existingPhotoPath)
-        photoPath = await uploadCarPhoto(photoFile)
+        photoPath = newPath
       }
       const row = {
         rental_company: form.rental_company,

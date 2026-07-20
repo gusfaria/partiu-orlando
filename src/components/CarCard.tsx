@@ -37,11 +37,13 @@ export function CarCard({ car, onEdit, onDelete }: Props) {
         </div>
       </div>
       <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
-        <div className="flex items-center gap-2">
-          <AvatarCircle name={car.profiles.name} color={car.profiles.avatar_color}
-            avatarUrl={car.profiles.avatar_url} size="sm" />
-          <span className="text-xs text-gray-400">{t.cars.added_by} {car.profiles.name}</span>
-        </div>
+        {car.profiles && (
+          <div className="flex items-center gap-2">
+            <AvatarCircle name={car.profiles.name} color={car.profiles.avatar_color}
+              avatarUrl={car.profiles.avatar_url} size="sm" />
+            <span className="text-xs text-gray-400">{t.cars.added_by} {car.profiles.name}</span>
+          </div>
+        )}
         <div className="flex gap-2 shrink-0">
           <button onClick={onEdit}
             className="px-3 py-1.5 border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50">

@@ -66,7 +66,7 @@ export type Car = {
   created_at: string
 }
 
-export type CarWithCreator = Car & { profiles: Profile }
+export type CarWithCreator = Car & { profiles: Profile | null }
 
 export type SitePhoto = {
   id: string
