@@ -45,3 +45,16 @@ export async function deleteSitePhoto(photo: SitePhoto): Promise<void> {
   await supabase.storage.from('photos').remove([photo.storage_path])
   await supabase.from('site_photos').delete().eq('id', photo.id)
 }
+
+export async function uploadCarPhoto(file: File): Promise<string> {
+  const blob = await resizeImage(file, 1200)
+  const path = `${crypto.randomUUID()}.jpg`
+  const { error } = await supabase.storage.from('car-photos')
+    .upload(path, blob, { contentType: 'image/jpeg' })
+  if (error) throw error
+  return path
+}
+
+export async function deleteCarPhoto(path: string): Promise<void> {
+  await supabase.storage.from('car-photos').remove([path])
+}

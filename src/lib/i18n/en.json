@@ -95,6 +95,24 @@
     "photos_caption": "Caption",
     "photos_hero_note": "Only the first photo appears on the home page."
   },
+  "cars": {
+    "section_title": "Guest Cars",
+    "add": "Add car",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "rental_company": "Rental company",
+    "location": "Location",
+    "pickup_date": "Pick-up",
+    "dropoff_date": "Drop-off",
+    "brand": "Brand",
+    "color": "Color",
+    "seats": "Seats",
+    "photo": "Photo (optional)",
+    "empty": "No cars added yet.",
+    "added_by": "Added by"
+  },
   "common": {
     "loading": "Loading...",
     "error": "Error loading data",

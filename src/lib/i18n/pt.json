@@ -95,6 +95,24 @@
     "photos_caption": "Legenda",
     "photos_hero_note": "Apenas a primeira foto aparece na página inicial."
   },
+  "cars": {
+    "section_title": "Carros dos Convidados",
+    "add": "Adicionar carro",
+    "edit": "Editar",
+    "delete": "Excluir",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "rental_company": "Locadora",
+    "location": "Local",
+    "pickup_date": "Retirada",
+    "dropoff_date": "Devolução",
+    "brand": "Marca",
+    "color": "Cor",
+    "seats": "Assentos",
+    "photo": "Foto (opcional)",
+    "empty": "Nenhum carro cadastrado ainda.",
+    "added_by": "Adicionado por"
+  },
   "common": {
     "loading": "Carregando...",
     "error": "Erro ao carregar dados",
