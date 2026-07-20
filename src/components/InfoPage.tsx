@@ -7,9 +7,9 @@ import { MarkdownRenderer } from './MarkdownRenderer'
 import { PhotoGallery } from './PhotoGallery'
 import type { InfoPage as InfoPageType } from '@/types/database'
 
-type Props = { slug: string; fallbackTitle: string }
+type Props = { slug: string; fallbackTitle: string; children?: React.ReactNode }
 
-function InfoPageContent({ slug, fallbackTitle }: Props) {
+function InfoPageContent({ slug, fallbackTitle, children }: Props) {
   const { t } = useI18n()
   const [page, setPage] = useState<InfoPageType | null>(null)
   const [loading, setLoading] = useState(true)
@@ -29,6 +29,7 @@ function InfoPageContent({ slug, fallbackTitle }: Props) {
         ? <MarkdownRenderer content={page.content} />
         : <p className="text-gray-400">{t.common.no_data}</p>
       }
+      {children}
     </div>
   )
 }
