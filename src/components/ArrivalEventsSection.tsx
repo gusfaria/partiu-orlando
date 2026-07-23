@@ -22,6 +22,7 @@ function ArrivalEventsContent() {
   const [form, setForm] = useState<ArrivalEventFormValue | null>(null)
   const [editingId, setEditingId] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
+  const [error, setError] = useState('')
 
   async function load() {
     const { data } = await supabase
@@ -65,6 +66,7 @@ function ArrivalEventsContent() {
   async function save() {
     if (!form || !isArrivalEventFormValid(form) || !profile) return
     setSaving(true)
+    setError('')
     const row = {
       description: form.description,
       transportation: form.transportation,
@@ -75,16 +77,36 @@ function ArrivalEventsContent() {
     }
     let eventId = editingId
     if (editingId) {
-      await supabase.from('arrival_events').update(row).eq('id', editingId)
-      await supabase.from('arrival_event_people').delete().eq('event_id', editingId)
+      const { error: updateError } = await supabase.from('arrival_events').update(row).eq('id', editingId)
+      if (updateError) {
+        setError(t.common.error)
+        setSaving(false)
+        return
+      }
+      const { error: deleteError } = await supabase.from('arrival_event_people').delete().eq('event_id', editingId)
+      if (deleteError) {
+        setError(t.common.error)
+        setSaving(false)
+        return
+      }
     } else {
-      const { data } = await supabase.from('arrival_events')
+      const { data, error: insertError } = await supabase.from('arrival_events')
         .insert({ ...row, created_by: profile.id }).select('id').single()
+      if (insertError) {
+        setError(t.common.error)
+        setSaving(false)
+        return
+      }
       eventId = data?.id ?? null
     }
     if (eventId) {
-      await supabase.from('arrival_event_people')
+      const { error: peopleError } = await supabase.from('arrival_event_people')
         .insert(form.personIds.map(user_id => ({ event_id: eventId, user_id })))
+      if (peopleError) {
+        setError(t.common.error)
+        setSaving(false)
+        return
+      }
     }
     setSaving(false)
     setForm(null)
@@ -177,6 +199,8 @@ function ArrivalEventsContent() {
 
           {dateTimeField('arrival_date', 'arrival_time', t.arrivals.arrival_date, t.arrivals.arrival_time)}
           {dateTimeField('departure_date', 'departure_time', t.arrivals.departure_date, t.arrivals.departure_time)}
+
+          {error && <p className="text-red-500 text-sm">{error}</p>}
 
           <div className="flex gap-2 pt-2">
             <button onClick={save} disabled={saving || !isArrivalEventFormValid(form)}

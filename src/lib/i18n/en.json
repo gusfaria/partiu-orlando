@@ -42,8 +42,7 @@
     "departure_time": "Departure time",
     "arrival": "Arrival",
     "departure": "Departure",
-    "empty": "No arrivals or departures logged yet.",
-    "added_by": "Added by"
+    "empty": "No arrivals or departures logged yet."
   },
   "activities": {
     "title": "Activities",

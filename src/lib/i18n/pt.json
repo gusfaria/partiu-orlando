@@ -42,8 +42,7 @@
     "departure_time": "Horário de saída",
     "arrival": "Chegada",
     "departure": "Saída",
-    "empty": "Nenhuma chegada ou saída registrada ainda.",
-    "added_by": "Adicionado por"
+    "empty": "Nenhuma chegada ou saída registrada ainda."
   },
   "activities": {
     "title": "Atividades",
