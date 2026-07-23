@@ -7,15 +7,6 @@ export type Profile = {
   created_at: string
 }
 
-export type Arrival = {
-  id: string
-  user_id: string
-  arrival_date: string | null
-  departure_date: string | null
-  notes: string | null
-  updated_at: string
-}
-
 export type Activity = {
   id: string
   title: string
@@ -48,10 +39,6 @@ export type ActivityWithSignups = Activity & {
   activity_signups: (ActivitySignup & { profiles: Profile })[]
 }
 
-export type ProfileWithArrival = Profile & {
-  arrivals: Arrival[]
-}
-
 export type Car = {
   id: string
   created_by: string | null
@@ -75,4 +62,26 @@ export type SitePhoto = {
   caption: string | null
   display_order: number
   created_at: string
+}
+
+export type ArrivalEvent = {
+  id: string
+  description: string
+  transportation: string
+  arrival_date: string | null
+  arrival_time: string | null
+  departure_date: string | null
+  departure_time: string | null
+  created_by: string | null
+  created_at: string
+}
+
+export type ArrivalEventPerson = {
+  id: string
+  event_id: string
+  user_id: string
+}
+
+export type ArrivalEventWithPeople = ArrivalEvent & {
+  arrival_event_people: (ArrivalEventPerson & { profiles: Profile | null })[]
 }
