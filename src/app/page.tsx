@@ -6,29 +6,29 @@ import { useAuth } from '@/lib/auth-context'
 import { supabase } from '@/lib/supabase'
 import { listSitePhotos, publicUrl } from '@/lib/photos'
 import { checklistItems } from '@/lib/checklist'
+import { hasLoggedArrival } from '@/lib/arrival-event'
 import { Countdown } from '@/components/Countdown'
 import { AvatarCircle } from '@/components/AvatarCircle'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
-import type { Profile, Arrival, SitePhoto } from '@/types/database'
+import type { Profile, SitePhoto, ArrivalEventWithPeople } from '@/types/database'
 
 function HomePage() {
   const { t } = useI18n()
   const { profile } = useAuth()
   const [profiles, setProfiles] = useState<Profile[]>([])
-  const [arrivals, setArrivals] = useState<Arrival[]>([])
+  const [events, setEvents] = useState<ArrivalEventWithPeople[]>([])
   const [hero, setHero] = useState<SitePhoto | null>(null)
 
   useEffect(() => {
     supabase.from('profiles').select('*').then(({ data }) => setProfiles(data ?? []))
-    supabase.from('arrivals').select('*').then(({ data }) => setArrivals(data ?? []))
+    supabase.from('arrival_events').select('*, arrival_event_people(*, profiles(*))')
+      .then(({ data }) => setEvents((data as ArrivalEventWithPeople[]) ?? []))
     listSitePhotos('hero').then(ps => setHero(ps[0] ?? null))
   }, [])
 
-  const missing = profiles.filter(
-    p => !arrivals.find(a => a.user_id === p.id && a.arrival_date)
-  )
-  const myArrival = profile ? arrivals.find(a => a.user_id === profile.id) ?? null : null
-  const todo = profile ? checklistItems(profile, myArrival) : []
+  const missing = profiles.filter(p => !hasLoggedArrival(p.id, events))
+  const myHasArrival = profile ? hasLoggedArrival(profile.id, events) : false
+  const todo = profile ? checklistItems(profile, myHasArrival) : []
   const checklistLabels = { photo: t.dashboard.checklist_photo, arrival: t.dashboard.checklist_arrival }
 
   return (
