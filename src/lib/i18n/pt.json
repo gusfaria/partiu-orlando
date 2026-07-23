@@ -24,15 +24,26 @@
     "error": "E-mail ou senha incorretos"
   },
   "arrivals": {
-    "title": "Chegadas",
-    "name": "Nome",
-    "arrival": "Chegada",
-    "departure": "Saída",
-    "notes": "Observações",
+    "title": "Chegadas e Saídas",
+    "add": "Adicionar",
     "edit": "Editar",
+    "delete": "Excluir",
     "save": "Salvar",
     "cancel": "Cancelar",
-    "not_filled": "Não preenchido"
+    "description": "Descrição",
+    "transportation": "Transporte",
+    "transport_car": "Carro",
+    "transport_train": "Trem",
+    "transport_plane": "Avião",
+    "people": "Pessoas",
+    "arrival_date": "Data de chegada",
+    "arrival_time": "Horário de chegada",
+    "departure_date": "Data de saída",
+    "departure_time": "Horário de saída",
+    "arrival": "Chegada",
+    "departure": "Saída",
+    "empty": "Nenhuma chegada ou saída registrada ainda.",
+    "added_by": "Adicionado por"
   },
   "activities": {
     "title": "Atividades",

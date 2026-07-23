@@ -24,15 +24,26 @@
     "error": "Incorrect email or password"
   },
   "arrivals": {
-    "title": "Arrivals",
-    "name": "Name",
-    "arrival": "Arrival",
-    "departure": "Departure",
-    "notes": "Notes",
+    "title": "Arrivals & Departures",
+    "add": "Add",
     "edit": "Edit",
+    "delete": "Delete",
     "save": "Save",
     "cancel": "Cancel",
-    "not_filled": "Not filled"
+    "description": "Description",
+    "transportation": "Transportation",
+    "transport_car": "Car",
+    "transport_train": "Train",
+    "transport_plane": "Plane",
+    "people": "People",
+    "arrival_date": "Arrival date",
+    "arrival_time": "Arrival time",
+    "departure_date": "Departure date",
+    "departure_time": "Departure time",
+    "arrival": "Arrival",
+    "departure": "Departure",
+    "empty": "No arrivals or departures logged yet.",
+    "added_by": "Added by"
   },
   "activities": {
     "title": "Activities",
