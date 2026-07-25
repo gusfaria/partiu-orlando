@@ -129,5 +129,20 @@
     "confirm_delete": "Are you sure? This cannot be undone.",
     "saved": "Saved!",
     "no_data": "No data found."
+  },
+  "itinerary": {
+    "title": "Itinerary",
+    "filter_all": "All",
+    "filter_arrivals": "Arrivals",
+    "filter_departures": "Departures",
+    "filter_activities": "Activities",
+    "arrival": "Arrival",
+    "departure": "Departure",
+    "activity": "Activity",
+    "transportation": "Transportation",
+    "cost": "Cost per person",
+    "buy_tickets": "Buy tickets",
+    "empty_day": "Nothing on this day",
+    "empty": "Nothing scheduled yet."
   }
 }

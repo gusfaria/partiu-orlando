@@ -129,5 +129,20 @@
     "confirm_delete": "Tem certeza? Esta ação não pode ser desfeita.",
     "saved": "Salvo!",
     "no_data": "Nenhum dado encontrado."
+  },
+  "itinerary": {
+    "title": "Programação",
+    "filter_all": "Tudo",
+    "filter_arrivals": "Chegadas",
+    "filter_departures": "Saídas",
+    "filter_activities": "Atividades",
+    "arrival": "Chegada",
+    "departure": "Saída",
+    "activity": "Atividade",
+    "transportation": "Transporte",
+    "cost": "Custo por pessoa",
+    "buy_tickets": "Comprar ingressos",
+    "empty_day": "Nada neste dia",
+    "empty": "Nada programado ainda."
   }
 }
