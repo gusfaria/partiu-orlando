@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useI18n } from '@/lib/i18n/context'
 import { ProtectedRoute } from './ProtectedRoute'
@@ -20,6 +20,7 @@ function ItineraryContent() {
   const [activities, setActivities] = useState<Activity[]>([])
   const [filter, setFilter] = useState<FilterType>('all')
   const [selected, setSelected] = useState<string | null>(null)
+  const detailRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     supabase.from('arrival_events').select('*, arrival_event_people(*, profiles(*))')
@@ -53,6 +54,12 @@ function ItineraryContent() {
   }
 
   const selectedItems = selected ? itemsForDay(visible, selected) : []
+
+  useEffect(() => {
+    if (selected) {
+      detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }, [selected])
 
   return (
     <div className="max-w-3xl mx-auto">
@@ -117,8 +124,10 @@ function ItineraryContent() {
       </div>
 
       {selected && (
-        <ItineraryDayDetail dateLabel={dayLabel(selected)} items={selectedItems}
-          onClose={() => setSelected(null)} />
+        <div ref={detailRef}>
+          <ItineraryDayDetail dateLabel={dayLabel(selected)} items={selectedItems}
+            onClose={() => setSelected(null)} />
+        </div>
       )}
 
       {items.length === 0 && (
