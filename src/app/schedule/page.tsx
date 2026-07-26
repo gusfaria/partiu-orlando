@@ -1,4 +1,5 @@
-import { InfoPage } from '@/components/InfoPage'
+import { ItineraryCalendar } from '@/components/ItineraryCalendar'
+
 export default function SchedulePage() {
-  return <InfoPage slug="schedule" fallbackTitle="Programação" />
+  return <ItineraryCalendar />
 }
