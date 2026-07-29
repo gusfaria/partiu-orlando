@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Fredoka, Space_Mono, Inter } from 'next/font/google'
 import './globals.css'
 import { I18nProvider } from '@/lib/i18n/context'
 import { AuthProvider } from '@/lib/auth-context'
 import { Nav } from '@/components/Nav'
 
-const inter = Inter({ subsets: ['latin'] })
+const fredoka = Fredoka({ subsets: ['latin'], variable: '--font-fredoka' })
+const spaceMono = Space_Mono({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-space-mono' })
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
   title: 'Partiu Orlando 🌴',
@@ -15,7 +17,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt">
-      <body className={`${inter.className} bg-gray-50 min-h-screen`}>
+      <body className={`${fredoka.variable} ${spaceMono.variable} ${inter.variable} min-h-screen`}>
         <I18nProvider>
           <AuthProvider>
             <Nav />
