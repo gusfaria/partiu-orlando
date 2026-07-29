@@ -13,9 +13,11 @@ export function Countdown() {
   const days = daysUntilTrip(new Date())
 
   return (
-    <div className="text-center py-10">
-      <div className="text-9xl font-black text-orange-500 leading-none">{days}</div>
-      <div className="text-xl text-gray-500 mt-3 font-medium">{t.home.countdown_label}</div>
+    <div className="text-center py-6">
+      <div className="font-display text-8xl font-bold text-gold leading-none">{days}</div>
+      <div className="font-ticket text-sm uppercase tracking-widest text-cream/70 mt-2">
+        {t.home.countdown_label}
+      </div>
     </div>
   )
 }
