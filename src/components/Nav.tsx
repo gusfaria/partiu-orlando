@@ -26,15 +26,15 @@ export function Nav() {
   const linkClass = (href: string) =>
     `text-sm transition-colors ${
       pathname === href || (href !== '/' && pathname.startsWith(href))
-        ? 'text-orange-500 font-semibold'
-        : 'text-gray-600 hover:text-gray-900'
+        ? 'text-gold font-semibold'
+        : 'text-cream/70 hover:text-cream'
     }`
 
   return (
-    <nav className="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
+    <nav className="bg-navy border-b-4 border-gold sticky top-0 z-50 shadow-sm">
       <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
-        <Link href="/" className="font-bold text-orange-500 text-lg whitespace-nowrap">
-          Partiu Orlando 🌴
+        <Link href="/" className="font-display font-bold text-cream text-lg whitespace-nowrap">
+          🏰 Partiu Orlando
         </Link>
 
         <div className="hidden md:flex items-center gap-5">
@@ -49,7 +49,7 @@ export function Nav() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setLang(lang === 'pt' ? 'en' : 'pt')}
-            className="text-xs text-gray-400 hover:text-gray-700 border border-gray-200 rounded px-2 py-1"
+            className="font-ticket text-xs text-cream/60 hover:text-cream border border-cream/30 rounded px-2 py-1"
           >
             {lang === 'pt' ? 'EN' : 'PT'}
           </button>
@@ -58,7 +58,7 @@ export function Nav() {
           </Link>
           <button
             onClick={signOut}
-            className="hidden md:block text-sm text-gray-400 hover:text-gray-700"
+            className="hidden md:block text-sm text-cream/60 hover:text-cream"
           >
             {t.nav.logout}
           </button>
@@ -67,7 +67,7 @@ export function Nav() {
             onClick={() => setOpen(o => !o)}
             aria-label="menu"
           >
-            <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-cream" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                 d={open ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'} />
             </svg>
@@ -76,7 +76,7 @@ export function Nav() {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-gray-100 px-4 py-3 flex flex-col gap-3 bg-white">
+        <div className="md:hidden border-t border-cream/10 px-4 py-3 flex flex-col gap-3 bg-navy">
           {links.map(l => (
             <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className={linkClass(l.href)}>
               {l.label}
@@ -87,7 +87,7 @@ export function Nav() {
               {t.nav.admin}
             </Link>
           )}
-          <button onClick={signOut} className="text-sm text-gray-400 text-left pt-1 border-t border-gray-100">
+          <button onClick={signOut} className="text-sm text-cream/60 text-left pt-1 border-t border-cream/10">
             {t.nav.logout}
           </button>
         </div>
