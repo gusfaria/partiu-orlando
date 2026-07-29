@@ -30,7 +30,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="fixed inset-0 bg-navy flex items-center justify-center px-4 overflow-hidden">
+    <div className="fixed inset-0 bg-navy flex items-center justify-center px-4 py-8 overflow-y-auto">
       <SunburstBg />
       <div className="relative w-full max-w-sm">
         <div className="flex justify-end mb-4">
@@ -66,7 +66,7 @@ export default function LoginPage() {
                 className="w-full border border-navy/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold"
               />
             </div>
-            {error && <p className="text-coral text-sm">{error}</p>}
+            {error && <p className="text-red-700 text-sm font-medium">{error}</p>}
             <BrandButton type="submit" disabled={loading} className="w-full">
               {loading ? '...' : t.login.submit}
             </BrandButton>

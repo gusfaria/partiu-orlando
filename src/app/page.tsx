@@ -54,7 +54,7 @@ function HomePage() {
       <TicketCard label={t.dashboard.facts_title} accent="teal">
         <p className="text-sm text-navy/80">🗓️ {t.dashboard.facts_dates}</p>
         <p className="text-sm text-navy/80 mt-1">📍 {t.dashboard.facts_address}</p>
-        <Link href="/house" className="inline-block font-display text-sm text-gold hover:brightness-110 font-semibold mt-2">
+        <Link href="/house" className="inline-block font-display text-sm text-navy underline decoration-gold decoration-2 underline-offset-2 font-semibold mt-2">
           {t.dashboard.facts_house_link}
         </Link>
       </TicketCard>
@@ -64,7 +64,7 @@ function HomePage() {
           <div className="space-y-1.5">
             {todo.map(item => (
               <Link key={item.key} href={item.href}
-                className="block text-sm text-navy/80 hover:text-gold">
+                className="block text-sm text-navy/80 hover:underline hover:decoration-gold">
                 {checklistLabels[item.key]}
               </Link>
             ))}
