@@ -12,6 +12,7 @@ import { AvatarCircle } from '@/components/AvatarCircle'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
 import { ScallopedBadge } from '@/components/brand/ScallopedBadge'
 import { TicketCard } from '@/components/brand/TicketCard'
+import { SunburstBg } from '@/components/brand/SunburstBg'
 import type { Profile, SitePhoto, ArrivalEventWithPeople } from '@/types/database'
 
 function HomePage() {
@@ -34,21 +35,25 @@ function HomePage() {
   const checklistLabels = { photo: t.dashboard.checklist_photo, arrival: t.dashboard.checklist_arrival }
 
   return (
-    <div className="max-w-xl mx-auto space-y-4">
-      <div className="relative bg-navy rounded-3xl overflow-hidden px-6 pt-8 pb-6 text-center">
+    <>
+      {/* full-bleed navy backdrop with cut-paper motifs, home route only */}
+      <div className="fixed inset-0 -z-10 bg-navy overflow-hidden">
         {hero && (
           <img src={publicUrl('photos', hero.storage_path)} alt=""
-            className="absolute inset-0 w-full h-full object-cover opacity-25" />
+            className="absolute inset-0 w-full h-full object-cover opacity-15" />
         )}
-        <div className="relative">
-          <div className="flex justify-center mb-2">
-            <ScallopedBadge>
-              <p className="font-display text-2xl font-bold text-gold leading-tight">PARTIU ORLANDO</p>
-              <p className="font-ticket text-cream text-base mt-1">40 + 45</p>
-            </ScallopedBadge>
-          </div>
-          <Countdown />
+        <SunburstBg />
+      </div>
+
+      <div className="max-w-xl mx-auto space-y-4">
+      <div className="text-center pt-2">
+        <div className="flex justify-center mb-2">
+          <ScallopedBadge>
+            <p className="font-display text-2xl font-bold text-gold leading-tight">PARTIU ORLANDO</p>
+            <p className="font-ticket text-cream text-base mt-1">40 + 45</p>
+          </ScallopedBadge>
         </div>
+        <Countdown />
       </div>
 
       <TicketCard label={t.dashboard.facts_title} accent="teal">
@@ -84,7 +89,8 @@ function HomePage() {
           </div>
         </TicketCard>
       )}
-    </div>
+      </div>
+    </>
   )
 }
 

@@ -14,6 +14,11 @@ export function Countdown() {
 
   return (
     <div className="text-center py-6">
+      {t.home.countdown_prefix && (
+        <div className="font-ticket text-sm uppercase tracking-widest text-cream/70 mb-1">
+          {t.home.countdown_prefix}
+        </div>
+      )}
       <div className="font-display text-8xl font-bold text-gold leading-none">{days}</div>
       <div className="font-ticket text-sm uppercase tracking-widest text-cream/70 mt-2">
         {t.home.countdown_label}

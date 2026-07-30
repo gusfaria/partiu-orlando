@@ -13,6 +13,7 @@
   "home": {
     "title": "Partiu Orlando! 🌴",
     "subtitle": "Gustavo & Philipe's Birthday",
+    "countdown_prefix": "",
     "countdown_label": "days until the trip",
     "arrivals_prompt": "Haven't filled in their arrival yet:"
   },

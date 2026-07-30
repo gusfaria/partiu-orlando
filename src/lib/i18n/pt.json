@@ -13,6 +13,7 @@
   "home": {
     "title": "Partiu Orlando! 🌴",
     "subtitle": "Aniversário do Gustavo & Philipe",
+    "countdown_prefix": "faltam",
     "countdown_label": "dias para a viagem",
     "arrivals_prompt": "Ainda não preencheram a chegada:"
   },
