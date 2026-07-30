@@ -20,7 +20,7 @@ export function PhotoGallery({ section }: Props) {
           <a key={p.id} href={url} target="_blank" rel="noopener noreferrer" className="block group">
             <img src={url} alt={p.caption ?? ''} loading="lazy"
               className="w-full aspect-[4/3] object-cover rounded-xl group-hover:opacity-90 transition-opacity" />
-            {p.caption && <p className="text-xs text-gray-500 mt-1">{p.caption}</p>}
+            {p.caption && <p className="text-xs text-gray-500 mt-1 font-ticket">{p.caption}</p>}
           </a>
         )
       })}
