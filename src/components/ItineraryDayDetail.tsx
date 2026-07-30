@@ -45,7 +45,7 @@ export function ItineraryDayDetail({ dateLabel, items, onClose }: Props) {
               )}
               {item.detail.ticket_url && (
                 <a href={item.detail.ticket_url} target="_blank" rel="noopener noreferrer"
-                  className="inline-block text-xs text-orange-500 hover:underline mt-0.5">
+                  className="inline-block text-xs text-navy underline decoration-gold decoration-2 underline-offset-2 mt-0.5">
                   {t.itinerary.buy_tickets} →
                 </a>
               )}

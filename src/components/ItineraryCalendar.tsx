@@ -63,13 +63,13 @@ function ItineraryContent() {
 
   return (
     <div className="max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold text-gray-900 mb-4">{t.itinerary.title}</h1>
+      <h1 className="text-2xl font-display text-navy mb-4">{t.itinerary.title}</h1>
 
       <div className="flex flex-wrap gap-2 mb-4">
         {FILTERS.map(f => (
           <button key={f} onClick={() => { setFilter(f); setSelected(null) }}
             className={`px-3 py-1.5 rounded-full text-sm font-medium ${
-              filter === f ? 'bg-orange-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              filter === f ? 'bg-gold text-navy' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}>
             {filterLabel[f]}
           </button>
@@ -91,8 +91,8 @@ function ItineraryContent() {
                 onClick={() => setSelected(date)}
                 className={`min-h-20 rounded-lg border p-1 flex flex-col gap-0.5 text-left ${
                   trip ? 'border-gray-200 bg-white' : 'border-transparent bg-gray-50/40'
-                } ${dayItems.length ? 'hover:border-orange-300 cursor-pointer' : 'cursor-default'} ${
-                  selected === date ? 'ring-2 ring-orange-400' : ''
+                } ${dayItems.length ? 'hover:border-gold cursor-pointer' : 'cursor-default'} ${
+                  selected === date ? 'ring-2 ring-gold' : ''
                 }`}>
                 <span className={`text-xs ${trip ? 'text-gray-700 font-semibold' : 'text-gray-300'}`}>{dayNum(date)}</span>
                 {dayItems.map(item => <ItineraryPill key={item.id} item={item} />)}
