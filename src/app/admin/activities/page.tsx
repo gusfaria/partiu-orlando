@@ -59,7 +59,7 @@ export default function AdminActivitiesPage() {
         <label className="block text-xs text-gray-500 mb-1">{label}</label>
         <input type={type} value={String(form?.[key] ?? '')}
           onChange={e => setForm(f => ({ ...f!, [key]: e.target.value === '' ? null : e.target.value }))}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400" />
+          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
       </div>
     )
   }
@@ -68,7 +68,7 @@ export default function AdminActivitiesPage() {
     <div className="space-y-4">
       {!form && (
         <button onClick={startCreate}
-          className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm font-medium hover:bg-orange-600">
+          className="px-4 py-2 bg-gold text-navy rounded-lg text-sm font-medium hover:brightness-105">
           + {t.admin.create_activity}
         </button>
       )}
@@ -81,7 +81,7 @@ export default function AdminActivitiesPage() {
             <label className="block text-xs text-gray-500 mb-1">{t.admin.description}</label>
             <textarea value={form.description ?? ''} rows={3}
               onChange={e => setForm(f => ({ ...f!, description: e.target.value }))}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 resize-none" />
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold resize-none" />
           </div>
           <div className="grid grid-cols-2 gap-3">
             {textField('activity_date', t.admin.activity_date, 'date')}
@@ -93,14 +93,14 @@ export default function AdminActivitiesPage() {
               <label className="block text-xs text-gray-500 mb-1">{t.admin.display_order}</label>
               <input type="number" value={form.display_order}
                 onChange={e => setForm(f => ({ ...f!, display_order: Number(e.target.value) || 0 }))}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400" />
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
             </div>
           </div>
           {textField('cost_notes', t.admin.cost_notes)}
           {textField('ticket_url', t.admin.ticket_url, 'url')}
           <div className="flex gap-2 pt-2">
             <button onClick={save} disabled={saving || !form.title}
-              className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm font-medium hover:bg-orange-600 disabled:opacity-50">
+              className="px-4 py-2 bg-gold text-navy rounded-lg text-sm font-medium hover:brightness-105 disabled:opacity-50">
               {saving ? '...' : t.admin.save}
             </button>
             <button onClick={() => { setForm(null); setEditingId(null) }}

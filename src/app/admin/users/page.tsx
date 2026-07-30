@@ -48,7 +48,7 @@ export default function AdminUsersPage() {
             <div className="space-y-3">
               <input value={editName} onChange={e => setEditName(e.target.value)}
                 placeholder={t.admin.name}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400" />
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
               <div className="flex flex-wrap gap-2">
                 {AVATAR_COLORS.map(c => (
                   <button key={c} onClick={() => setEditColor(c)}
@@ -58,7 +58,7 @@ export default function AdminUsersPage() {
               </div>
               <div className="flex gap-2">
                 <button onClick={() => saveEdit(p.id)} disabled={saving}
-                  className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm font-medium hover:bg-orange-600 disabled:opacity-50">
+                  className="px-4 py-2 bg-gold text-navy rounded-lg text-sm font-medium hover:brightness-105 disabled:opacity-50">
                   {saving ? '...' : t.admin.save}
                 </button>
                 <button onClick={() => setEditingId(null)}
@@ -73,7 +73,7 @@ export default function AdminUsersPage() {
                 <AvatarCircle name={p.name} color={p.avatar_color} avatarUrl={p.avatar_url} />
                 <div>
                   <p className="font-semibold text-gray-900">{p.name}</p>
-                  {p.is_admin && <p className="text-xs text-orange-500">admin</p>}
+                  {p.is_admin && <p className="text-xs text-navy">admin</p>}
                 </div>
               </div>
               <button onClick={() => startEdit(p)}

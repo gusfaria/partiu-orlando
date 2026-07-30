@@ -44,7 +44,7 @@ export default function AdminContentPage() {
         {SLUGS.map(slug => (
           <button key={slug} onClick={() => setActiveSlug(slug)}
             className={`px-3 py-1.5 rounded-lg text-sm font-medium ${
-              activeSlug === slug ? 'bg-orange-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              activeSlug === slug ? 'bg-gold text-navy' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}>
             {pages.find(p => p.slug === slug)?.title ?? slug}
           </button>
@@ -54,7 +54,7 @@ export default function AdminContentPage() {
       <div className="flex items-center justify-between">
         <p className="text-sm text-gray-500">Markdown</p>
         <button onClick={() => setPreview(v => !v)}
-          className="text-sm text-orange-500 hover:underline">
+          className="text-sm text-navy underline decoration-gold decoration-2 underline-offset-2">
           {preview ? t.admin.edit_content : 'Preview'}
         </button>
       </div>
@@ -66,12 +66,12 @@ export default function AdminContentPage() {
       ) : (
         <textarea value={draft} onChange={e => setDraft(e.target.value)} rows={20}
           placeholder="Escreva em Markdown..."
-          className="w-full border border-gray-300 rounded-2xl px-4 py-3 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-orange-400 resize-y" />
+          className="w-full border border-gray-300 rounded-2xl px-4 py-3 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-gold resize-y" />
       )}
 
       <div className="flex items-center gap-3">
         <button onClick={saveContent} disabled={saving}
-          className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm font-medium hover:bg-orange-600 disabled:opacity-50">
+          className="px-4 py-2 bg-gold text-navy rounded-lg text-sm font-medium hover:brightness-105 disabled:opacity-50">
           {saving ? '...' : t.admin.save}
         </button>
         {saved && <span className="text-sm text-green-600">{t.common.saved}</span>}
