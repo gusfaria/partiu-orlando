@@ -28,7 +28,7 @@ export function CarCard({ car, onEdit, onDelete }: Props) {
       )}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <p className="font-bold text-gray-900">{car.brand} — {car.color}</p>
+          <p className="font-bold font-display text-navy">{car.brand} — {car.color}</p>
           <p className="text-sm text-gray-600 mt-0.5">{car.rental_company} • {car.location}</p>
           <p className="text-sm text-gray-500 mt-0.5">
             {fmt(car.pickup_date)} → {fmt(car.dropoff_date)}

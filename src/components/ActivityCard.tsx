@@ -31,7 +31,7 @@ export function ActivityCard({ activity, isSignedUp, myPlusGuests, onToggle, onP
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <h3 className="font-bold text-gray-900 text-lg leading-snug">{activity.title}</h3>
+          <h3 className="font-bold font-display text-navy text-lg leading-snug">{activity.title}</h3>
           {dateLabel && (
             <p className="text-sm text-gray-400 mt-0.5 capitalize">{dateLabel}</p>
           )}
@@ -41,7 +41,7 @@ export function ActivityCard({ activity, isSignedUp, myPlusGuests, onToggle, onP
           className={`shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
             isSignedUp
               ? 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              : 'bg-orange-500 text-white hover:bg-orange-600'
+              : 'bg-gold text-navy hover:brightness-105'
           }`}
         >
           {isSignedUp ? t.activities.unsign : t.activities.signup}
@@ -69,14 +69,14 @@ export function ActivityCard({ activity, isSignedUp, myPlusGuests, onToggle, onP
           href={activity.ticket_url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block mt-3 text-sm text-orange-500 hover:underline font-medium"
+          className="inline-block mt-3 text-sm text-navy underline decoration-gold decoration-2 underline-offset-2 font-medium"
         >
           {t.activities.buy_tickets} →
         </a>
       )}
 
       {isSignedUp && (
-        <div className="mt-4 flex items-center gap-3 bg-orange-50 border border-orange-100 rounded-xl px-4 py-2.5 w-fit">
+        <div className="mt-4 flex items-center gap-3 bg-gold/10 border border-gold/30 rounded-xl px-4 py-2.5 w-fit">
           <span className="text-sm text-gray-700">+ {t.activities.plus_guests}:</span>
           <div className="flex items-center gap-2">
             <button
@@ -112,7 +112,7 @@ export function ActivityCard({ activity, isSignedUp, myPlusGuests, onToggle, onP
                   size="sm"
                 />
                 {s.plus_guests > 0 && (
-                  <span className="absolute -top-1.5 -right-1.5 bg-orange-500 text-white text-[10px] font-bold rounded-full px-1 min-w-[16px] h-4 flex items-center justify-center leading-none">
+                  <span className="absolute -top-1.5 -right-1.5 bg-gold text-navy text-[10px] font-bold rounded-full px-1 min-w-[16px] h-4 flex items-center justify-center leading-none">
                     +{s.plus_guests}
                   </span>
                 )}

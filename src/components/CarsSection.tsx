@@ -108,18 +108,18 @@ export function CarsSection() {
         <label className="block text-xs text-gray-500 mb-1">{label}</label>
         <input type={type} value={form?.[key] ?? ''}
           onChange={e => setForm(f => ({ ...f!, [key]: e.target.value }))}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400" />
+          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
       </div>
     )
   }
 
   return (
     <div className="mt-8 pt-8 border-t border-gray-100">
-      <h2 className="text-lg font-bold text-gray-900 mb-4">{t.cars.section_title}</h2>
+      <h2 className="text-lg font-bold font-display text-navy mb-4">{t.cars.section_title}</h2>
 
       {!form && (
         <button onClick={startCreate}
-          className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm font-medium hover:bg-orange-600 mb-4">
+          className="px-4 py-2 bg-gold text-navy rounded-lg text-sm font-medium hover:brightness-105 mb-4">
           + {t.cars.add}
         </button>
       )}
@@ -145,7 +145,7 @@ export function CarsSection() {
           {error && <p className="text-red-500 text-sm">{error}</p>}
           <div className="flex gap-2 pt-2">
             <button onClick={save} disabled={saving || !isCarFormValid(form)}
-              className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm font-medium hover:bg-orange-600 disabled:opacity-50">
+              className="px-4 py-2 bg-gold text-navy rounded-lg text-sm font-medium hover:brightness-105 disabled:opacity-50">
               {saving ? t.profile.uploading : t.cars.save}
             </button>
             <button onClick={() => { setForm(null); setEditingId(null) }}
