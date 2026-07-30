@@ -32,7 +32,7 @@ export function ArrivalEventCard({ event, onEdit, onDelete }: Props) {
           <AvatarCircle key={p.id} name={p.profiles!.name} color={p.profiles!.avatar_color}
             avatarUrl={p.profiles!.avatar_url} size="sm" />
         ))}
-        <span className="text-sm font-semibold text-gray-900">
+        <span className="text-sm font-semibold font-display text-navy">
           {people.map(p => p.profiles!.name).join(', ')}
         </span>
       </div>

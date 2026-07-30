@@ -127,7 +127,7 @@ function ArrivalEventsContent() {
         <label className="block text-xs text-gray-500 mb-1">{label}</label>
         <input type="text" value={form?.[key] ?? ''}
           onChange={e => setForm(f => ({ ...f!, [key]: e.target.value }))}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400" />
+          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
       </div>
     )
   }
@@ -140,13 +140,13 @@ function ArrivalEventsContent() {
           <label className="block text-xs text-gray-500 mb-1">{dateLabel}</label>
           <input type="date" value={form?.[dateKey] ?? ''}
             onChange={e => setForm(f => ({ ...f!, [dateKey]: e.target.value }))}
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400" />
+            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
         </div>
         <div>
           <label className="block text-xs text-gray-500 mb-1">{timeLabel}</label>
           <input type="time" value={form?.[timeKey] ?? ''}
             onChange={e => setForm(f => ({ ...f!, [timeKey]: e.target.value }))}
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400" />
+            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
         </div>
       </div>
     )
@@ -154,11 +154,11 @@ function ArrivalEventsContent() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">{t.arrivals.title}</h1>
+      <h1 className="text-2xl font-bold font-display text-navy mb-6">{t.arrivals.title}</h1>
 
       {!form && (
         <button onClick={startCreate}
-          className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm font-medium hover:bg-orange-600 mb-4">
+          className="px-4 py-2 bg-gold text-navy rounded-lg text-sm font-medium hover:brightness-105 mb-4">
           + {t.arrivals.add}
         </button>
       )}
@@ -173,7 +173,7 @@ function ArrivalEventsContent() {
                 return (
                   <button key={p.id} type="button" onClick={() => togglePerson(p.id)}
                     className={`flex items-center gap-1.5 px-2 py-1 rounded-full border text-sm transition-colors ${
-                      selected ? 'border-orange-400 bg-orange-50 text-orange-700' : 'border-gray-200 text-gray-600 hover:bg-gray-50'
+                      selected ? 'border-gold bg-gold/10 text-navy' : 'border-gray-200 text-gray-600 hover:bg-gray-50'
                     }`}>
                     <AvatarCircle name={p.name} color={p.avatar_color} avatarUrl={p.avatar_url} size="sm" />
                     {p.name}
@@ -189,7 +189,7 @@ function ArrivalEventsContent() {
             <label className="block text-xs text-gray-500 mb-1">{t.arrivals.transportation}</label>
             <select value={form.transportation}
               onChange={e => setForm(f => ({ ...f!, transportation: e.target.value }))}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400">
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold">
               <option value="">—</option>
               <option value="Carro">{t.arrivals.transport_car}</option>
               <option value="Trem">{t.arrivals.transport_train}</option>
@@ -204,7 +204,7 @@ function ArrivalEventsContent() {
 
           <div className="flex gap-2 pt-2">
             <button onClick={save} disabled={saving || !isArrivalEventFormValid(form)}
-              className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm font-medium hover:bg-orange-600 disabled:opacity-50">
+              className="px-4 py-2 bg-gold text-navy rounded-lg text-sm font-medium hover:brightness-105 disabled:opacity-50">
               {saving ? '...' : t.arrivals.save}
             </button>
             <button onClick={() => { setForm(null); setEditingId(null) }}
