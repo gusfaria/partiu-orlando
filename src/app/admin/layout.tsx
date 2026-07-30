@@ -17,7 +17,7 @@ function AdminLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-display text-navy mb-4">{t.admin.title}</h1>
+      <h1 className="text-2xl font-display font-bold text-navy mb-4">{t.admin.title}</h1>
       <div className="flex gap-2 border-b border-gray-200 mb-6">
         {tabs.map(tab => (
           <Link key={tab.href} href={tab.href}

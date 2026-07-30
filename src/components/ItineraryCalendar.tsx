@@ -63,7 +63,7 @@ function ItineraryContent() {
 
   return (
     <div className="max-w-3xl mx-auto">
-      <h1 className="text-2xl font-display text-navy mb-4">{t.itinerary.title}</h1>
+      <h1 className="text-2xl font-display font-bold text-navy mb-4">{t.itinerary.title}</h1>
 
       <div className="flex flex-wrap gap-2 mb-4">
         {FILTERS.map(f => (

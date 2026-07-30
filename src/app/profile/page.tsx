@@ -47,7 +47,7 @@ function ProfilePage() {
 
   return (
     <div className="max-w-md mx-auto">
-      <h1 className="text-2xl font-display text-navy mb-6">{t.profile.title}</h1>
+      <h1 className="text-2xl font-display font-bold text-navy mb-6">{t.profile.title}</h1>
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 space-y-5">
         <div className="flex items-center gap-4">
           <AvatarCircle name={name || profile.name} color={color} avatarUrl={avatarUrl} size="lg" />

@@ -15,7 +15,7 @@ export function ItineraryDayDetail({ dateLabel, items, onClose }: Props) {
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 mt-4">
       <div className="flex items-center justify-between mb-3">
-        <h3 className="font-bold text-gray-900 capitalize">{dateLabel}</h3>
+        <h3 className="font-bold font-display text-navy capitalize">{dateLabel}</h3>
         <button onClick={onClose} className="text-gray-400 hover:text-gray-700 text-sm" aria-label="close">✕</button>
       </div>
 

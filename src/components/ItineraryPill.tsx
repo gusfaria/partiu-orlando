@@ -2,8 +2,8 @@
 import type { CalendarItem } from '@/lib/itinerary'
 
 const COLORS: Record<CalendarItem['type'], string> = {
-  arrival:   'bg-teal/15 text-teal border-teal/40',
-  departure: 'bg-coral/15 text-coral border-coral/40',
+  arrival:   'bg-teal/15 text-navy border-teal/40',
+  departure: 'bg-coral/15 text-navy border-coral/40',
   activity:  'bg-gold/15 text-navy border-gold/50',
 }
 
