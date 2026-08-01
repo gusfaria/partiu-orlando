@@ -19,7 +19,7 @@ function InfoPageContent({ slug, fallbackTitle, children }: Props) {
       .then(({ data }) => { setPage(data); setLoading(false) })
   }, [slug])
 
-  if (loading) return <p className="text-gray-400">{t.common.loading}</p>
+  if (loading) return <p className="text-navy/50">{t.common.loading}</p>
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -27,7 +27,7 @@ function InfoPageContent({ slug, fallbackTitle, children }: Props) {
       {(slug === 'house' || slug === 'cars') && <PhotoGallery section={slug} />}
       {page?.content
         ? <MarkdownRenderer content={page.content} />
-        : <p className="text-gray-400">{t.common.no_data}</p>
+        : <p className="text-navy/50">{t.common.no_data}</p>
       }
       {children}
     </div>

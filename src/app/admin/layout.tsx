@@ -18,13 +18,13 @@ function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="max-w-2xl mx-auto">
       <h1 className="text-2xl font-display font-bold text-navy mb-4">{t.admin.title}</h1>
-      <div className="flex gap-2 border-b border-gray-200 mb-6">
+      <div className="flex gap-2 border-b border-navy/15 mb-6">
         {tabs.map(tab => (
           <Link key={tab.href} href={tab.href}
             className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${
               pathname.startsWith(tab.href)
                 ? 'border-gold text-navy'
-                : 'border-transparent text-gray-500 hover:text-gray-800'
+                : 'border-transparent text-navy/60 hover:text-navy'
             }`}>
             {tab.label}
           </Link>
