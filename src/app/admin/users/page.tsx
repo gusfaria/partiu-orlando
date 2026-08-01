@@ -43,12 +43,12 @@ export default function AdminUsersPage() {
         {t.admin.user_creation_note}
       </div>
       {profiles.map(p => (
-        <div key={p.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
+        <div key={p.id} className="bg-white rounded-2xl border border-navy/10 shadow-[0_4px_0_rgba(26,37,54,0.08)] p-4">
           {editingId === p.id ? (
             <div className="space-y-3">
               <input value={editName} onChange={e => setEditName(e.target.value)}
                 placeholder={t.admin.name}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
+                className="w-full border border-navy/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
               <div className="flex flex-wrap gap-2">
                 {AVATAR_COLORS.map(c => (
                   <button key={c} onClick={() => setEditColor(c)}
@@ -62,7 +62,7 @@ export default function AdminUsersPage() {
                   {saving ? '...' : t.admin.save}
                 </button>
                 <button onClick={() => setEditingId(null)}
-                  className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm hover:bg-gray-200">
+                  className="px-4 py-2 bg-navy/5 text-navy/70 rounded-lg text-sm hover:bg-navy/10">
                   {t.admin.cancel}
                 </button>
               </div>
@@ -72,12 +72,12 @@ export default function AdminUsersPage() {
               <div className="flex items-center gap-3">
                 <AvatarCircle name={p.name} color={p.avatar_color} avatarUrl={p.avatar_url} />
                 <div>
-                  <p className="font-semibold text-gray-900">{p.name}</p>
+                  <p className="font-semibold text-navy">{p.name}</p>
                   {p.is_admin && <p className="text-xs text-navy">admin</p>}
                 </div>
               </div>
               <button onClick={() => startEdit(p)}
-                className="px-3 py-1.5 border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50">
+                className="px-3 py-1.5 border border-navy/15 rounded-lg text-sm text-navy/70 hover:bg-navy/5">
                 {t.admin.edit}
               </button>
             </div>
