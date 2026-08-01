@@ -69,7 +69,7 @@ function ItineraryContent() {
         {FILTERS.map(f => (
           <button key={f} onClick={() => { setFilter(f); setSelected(null) }}
             className={`px-3 py-1.5 rounded-full text-sm font-medium ${
-              filter === f ? 'bg-gold text-navy' : 'bg-navy/5 text-navy/50 hover:bg-navy/10'
+              filter === f ? 'bg-gold text-navy' : 'bg-navy/5 text-navy/70 hover:bg-navy/10'
             }`}>
             {filterLabel[f]}
           </button>

@@ -115,7 +115,7 @@ export default function AdminActivitiesPage() {
         <div key={a.id} className="bg-white rounded-2xl border border-navy/10 shadow-[0_4px_0_rgba(26,37,54,0.08)] p-4 flex items-start justify-between gap-3">
           <div>
             <p className="font-semibold text-navy">{a.title}</p>
-            <p className="text-sm text-navy/30">
+            <p className="text-sm text-navy/50">
               {a.activity_date ?? '—'} {a.activity_time ? `• ${a.activity_time.slice(0, 5)}` : ''}
             </p>
             {a.cost_per_person != null && (
