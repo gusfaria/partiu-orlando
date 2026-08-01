@@ -28,19 +28,19 @@ export function ActivityCard({ activity, isSignedUp, myPlusGuests, onToggle, onP
   const totalHeadcount = activity.activity_signups.reduce((sum, s) => sum + 1 + s.plus_guests, 0)
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+    <div className="bg-white rounded-2xl border border-navy/10 shadow-[0_4px_0_rgba(26,37,54,0.08)] p-5">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <h3 className="font-bold font-display text-navy text-lg leading-snug">{activity.title}</h3>
           {dateLabel && (
-            <p className="text-sm text-gray-400 mt-0.5 capitalize">{dateLabel}</p>
+            <p className="text-sm text-navy/50 mt-0.5 capitalize">{dateLabel}</p>
           )}
         </div>
         <button
           onClick={onToggle}
           className={`shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
             isSignedUp
-              ? 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              ? 'bg-navy/5 text-navy/70 hover:bg-navy/10'
               : 'bg-gold text-navy hover:brightness-105'
           }`}
         >
@@ -49,17 +49,17 @@ export function ActivityCard({ activity, isSignedUp, myPlusGuests, onToggle, onP
       </div>
 
       {activity.description && (
-        <p className="text-gray-600 text-sm mt-3 leading-relaxed">{activity.description}</p>
+        <p className="text-navy/70 text-sm mt-3 leading-relaxed">{activity.description}</p>
       )}
 
       {activity.cost_per_person != null && (
         <p className="text-sm mt-3">
-          <span className="font-medium text-gray-700">{t.activities.cost}: </span>
-          <span className="text-gray-600">
+          <span className="font-medium text-navy/80">{t.activities.cost}: </span>
+          <span className="text-navy/70">
             $ {Number(activity.cost_per_person).toFixed(2)}
           </span>
           {activity.cost_notes && (
-            <span className="text-gray-400"> — {activity.cost_notes}</span>
+            <span className="text-navy/50"> — {activity.cost_notes}</span>
           )}
         </p>
       )}
@@ -77,19 +77,19 @@ export function ActivityCard({ activity, isSignedUp, myPlusGuests, onToggle, onP
 
       {isSignedUp && (
         <div className="mt-4 flex items-center gap-3 bg-gold/10 border border-gold/30 rounded-xl px-4 py-2.5 w-fit">
-          <span className="text-sm text-gray-700">+ {t.activities.plus_guests}:</span>
+          <span className="text-sm text-navy/80">+ {t.activities.plus_guests}:</span>
           <div className="flex items-center gap-2">
             <button
               onClick={() => onPlusGuests(Math.max(0, myPlusGuests - 1))}
               disabled={myPlusGuests === 0}
-              className="w-7 h-7 rounded-full bg-white border border-gray-200 text-gray-600 font-bold disabled:opacity-40 hover:bg-gray-50"
+              className="w-7 h-7 rounded-full bg-white border border-navy/15 text-navy/70 font-bold disabled:opacity-40 hover:bg-navy/5"
             >
               −
             </button>
-            <span className="w-5 text-center text-sm font-semibold text-gray-900">{myPlusGuests}</span>
+            <span className="w-5 text-center text-sm font-semibold text-navy">{myPlusGuests}</span>
             <button
               onClick={() => onPlusGuests(myPlusGuests + 1)}
-              className="w-7 h-7 rounded-full bg-white border border-gray-200 text-gray-600 font-bold hover:bg-gray-50"
+              className="w-7 h-7 rounded-full bg-white border border-navy/15 text-navy/70 font-bold hover:bg-navy/5"
             >
               +
             </button>
@@ -98,8 +98,8 @@ export function ActivityCard({ activity, isSignedUp, myPlusGuests, onToggle, onP
       )}
 
       {activity.activity_signups.length > 0 && (
-        <div className="mt-4 pt-4 border-t border-gray-100">
-          <p className="text-xs text-gray-400 mb-2">
+        <div className="mt-4 pt-4 border-t border-navy/10">
+          <p className="text-xs text-navy/50 mb-2">
             {t.activities.attendees} ({totalHeadcount} {t.activities.total})
           </p>
           <div className="flex flex-wrap gap-1.5">

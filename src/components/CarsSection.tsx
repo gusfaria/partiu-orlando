@@ -105,16 +105,16 @@ export function CarsSection() {
   function field(key: keyof CarFormValue, label: string, type = 'text') {
     return (
       <div key={key}>
-        <label className="block text-xs text-gray-500 mb-1">{label}</label>
+        <label className="block text-xs text-navy/60 mb-1">{label}</label>
         <input type={type} value={form?.[key] ?? ''}
           onChange={e => setForm(f => ({ ...f!, [key]: e.target.value }))}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
+          className="w-full border border-navy/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
       </div>
     )
   }
 
   return (
-    <div className="mt-8 pt-8 border-t border-gray-100">
+    <div className="mt-8 pt-8 border-t border-navy/10">
       <h2 className="text-lg font-bold font-display text-navy mb-4">{t.cars.section_title}</h2>
 
       {!form && (
@@ -125,7 +125,7 @@ export function CarsSection() {
       )}
 
       {form && (
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 space-y-3 mb-4">
+        <div className="bg-white rounded-2xl border border-navy/10 shadow-[0_4px_0_rgba(26,37,54,0.08)] p-5 space-y-3 mb-4">
           {field('rental_company', t.cars.rental_company)}
           {field('location', t.cars.location)}
           <div className="grid grid-cols-2 gap-3">
@@ -138,9 +138,9 @@ export function CarsSection() {
           </div>
           {field('seats', t.cars.seats, 'number')}
           <div>
-            <label className="block text-xs text-gray-500 mb-1">{t.cars.photo}</label>
+            <label className="block text-xs text-navy/60 mb-1">{t.cars.photo}</label>
             <input ref={fileRef} type="file" accept="image/*" onChange={onFile}
-              className="text-sm text-gray-600" />
+              className="text-sm text-navy/70" />
           </div>
           {error && <p className="text-red-500 text-sm">{error}</p>}
           <div className="flex gap-2 pt-2">
@@ -149,7 +149,7 @@ export function CarsSection() {
               {saving ? t.profile.uploading : t.cars.save}
             </button>
             <button onClick={() => { setForm(null); setEditingId(null) }}
-              className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm hover:bg-gray-200">
+              className="px-4 py-2 bg-navy/5 text-navy/70 rounded-lg text-sm hover:bg-navy/10">
               {t.cars.cancel}
             </button>
           </div>
@@ -157,7 +157,7 @@ export function CarsSection() {
       )}
 
       {cars.length === 0 && !form && (
-        <p className="text-gray-400 text-sm">{t.cars.empty}</p>
+        <p className="text-navy/50 text-sm">{t.cars.empty}</p>
       )}
 
       <div className="space-y-3">

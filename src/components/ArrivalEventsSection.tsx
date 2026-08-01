@@ -124,10 +124,10 @@ function ArrivalEventsContent() {
   function textField(key: 'description', label: string) {
     return (
       <div>
-        <label className="block text-xs text-gray-500 mb-1">{label}</label>
+        <label className="block text-xs text-navy/60 mb-1">{label}</label>
         <input type="text" value={form?.[key] ?? ''}
           onChange={e => setForm(f => ({ ...f!, [key]: e.target.value }))}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
+          className="w-full border border-navy/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
       </div>
     )
   }
@@ -137,16 +137,16 @@ function ArrivalEventsContent() {
     return (
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <label className="block text-xs text-gray-500 mb-1">{dateLabel}</label>
+          <label className="block text-xs text-navy/60 mb-1">{dateLabel}</label>
           <input type="date" value={form?.[dateKey] ?? ''}
             onChange={e => setForm(f => ({ ...f!, [dateKey]: e.target.value }))}
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
+            className="w-full border border-navy/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
         </div>
         <div>
-          <label className="block text-xs text-gray-500 mb-1">{timeLabel}</label>
+          <label className="block text-xs text-navy/60 mb-1">{timeLabel}</label>
           <input type="time" value={form?.[timeKey] ?? ''}
             onChange={e => setForm(f => ({ ...f!, [timeKey]: e.target.value }))}
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
+            className="w-full border border-navy/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
         </div>
       </div>
     )
@@ -164,16 +164,16 @@ function ArrivalEventsContent() {
       )}
 
       {form && (
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 space-y-3 mb-4">
+        <div className="bg-white rounded-2xl border border-navy/10 shadow-[0_4px_0_rgba(26,37,54,0.08)] p-5 space-y-3 mb-4">
           <div>
-            <label className="block text-xs text-gray-500 mb-1">{t.arrivals.people}</label>
+            <label className="block text-xs text-navy/60 mb-1">{t.arrivals.people}</label>
             <div className="flex flex-wrap gap-2">
               {profiles.map(p => {
                 const selected = form.personIds.includes(p.id)
                 return (
                   <button key={p.id} type="button" onClick={() => togglePerson(p.id)}
                     className={`flex items-center gap-1.5 px-2 py-1 rounded-full border text-sm transition-colors ${
-                      selected ? 'border-gold bg-gold/10 text-navy' : 'border-gray-200 text-gray-600 hover:bg-gray-50'
+                      selected ? 'border-gold bg-gold/10 text-navy' : 'border-navy/15 text-navy/70 hover:bg-navy/5'
                     }`}>
                     <AvatarCircle name={p.name} color={p.avatar_color} avatarUrl={p.avatar_url} size="sm" />
                     {p.name}
@@ -186,10 +186,10 @@ function ArrivalEventsContent() {
           {textField('description', t.arrivals.description)}
 
           <div>
-            <label className="block text-xs text-gray-500 mb-1">{t.arrivals.transportation}</label>
+            <label className="block text-xs text-navy/60 mb-1">{t.arrivals.transportation}</label>
             <select value={form.transportation}
               onChange={e => setForm(f => ({ ...f!, transportation: e.target.value }))}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold">
+              className="w-full border border-navy/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold">
               <option value="">—</option>
               <option value="Carro">{t.arrivals.transport_car}</option>
               <option value="Trem">{t.arrivals.transport_train}</option>
@@ -208,7 +208,7 @@ function ArrivalEventsContent() {
               {saving ? '...' : t.arrivals.save}
             </button>
             <button onClick={() => { setForm(null); setEditingId(null) }}
-              className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm hover:bg-gray-200">
+              className="px-4 py-2 bg-navy/5 text-navy/70 rounded-lg text-sm hover:bg-navy/10">
               {t.arrivals.cancel}
             </button>
           </div>
@@ -216,7 +216,7 @@ function ArrivalEventsContent() {
       )}
 
       {events.length === 0 && !form && (
-        <p className="text-gray-400 text-sm">{t.arrivals.empty}</p>
+        <p className="text-navy/50 text-sm">{t.arrivals.empty}</p>
       )}
 
       <div className="space-y-3">

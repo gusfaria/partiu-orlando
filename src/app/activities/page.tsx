@@ -43,13 +43,13 @@ function ActivitiesPage() {
     load()
   }
 
-  if (loading) return <p className="text-gray-400">{t.common.loading}</p>
+  if (loading) return <p className="text-navy/50">{t.common.loading}</p>
 
   return (
     <div className="max-w-2xl mx-auto">
       <h1 className="text-2xl font-bold font-display text-navy mb-6">{t.activities.title}</h1>
       {activities.length === 0 ? (
-        <p className="text-gray-400">{t.activities.no_activities}</p>
+        <p className="text-navy/50">{t.activities.no_activities}</p>
       ) : (
         <div className="space-y-4">
           {activities.map(a => {
