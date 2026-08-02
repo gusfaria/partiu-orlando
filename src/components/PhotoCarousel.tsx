@@ -30,7 +30,7 @@ export function PhotoCarousel({ section }: Props) {
           setTouchX(null)
         }}>
         <a href={url} target="_blank" rel="noopener noreferrer" className="block">
-          <img src={url} alt={photo.caption ?? ''}
+          <img src={url} alt={photo.caption ?? `foto ${i + 1}`}
             className="w-full h-64 md:h-80 object-cover rounded-2xl border border-navy/10" />
         </a>
         {photos.length > 1 && (
@@ -47,7 +47,7 @@ export function PhotoCarousel({ section }: Props) {
         <div className="flex justify-center gap-1.5 mt-2">
           {photos.map((p, n) => (
             <button key={p.id} type="button" onClick={() => setI(n)} aria-label={`foto ${n + 1}`}
-              className={`w-2 h-2 rounded-full transition-colors ${n === i ? 'bg-gold' : 'bg-navy/20 hover:bg-navy/40'}`} />
+              className={`h-2.5 rounded-full transition-all ${n === i ? 'w-5 bg-gold ring-1 ring-navy/30' : 'w-2.5 bg-navy/25 hover:bg-navy/40'}`} />
           ))}
         </div>
       )}

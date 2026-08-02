@@ -24,7 +24,7 @@ function InfoPageContent({ slug, fallbackTitle, children }: Props) {
   return (
     <div className="max-w-2xl mx-auto">
       <h1 className="text-2xl font-bold font-display text-navy mb-6">{page?.title ?? fallbackTitle}</h1>
-      {(slug === 'house' || slug === 'cars') && <PhotoGallery section={slug} />}
+      {slug === 'cars' && <PhotoGallery section={slug} />}
       {page?.content
         ? <MarkdownRenderer content={page.content} />
         : <p className="text-navy/50">{t.common.no_data}</p>
