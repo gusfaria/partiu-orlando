@@ -5,6 +5,7 @@ import { useI18n } from '@/lib/i18n/context'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
 import { MarkdownRenderer } from '@/components/MarkdownRenderer'
 import { PhotoCarousel } from '@/components/PhotoCarousel'
+import { HouseMap } from '@/components/HouseMap'
 import { splitOnFirstHr } from '@/lib/markdown-split'
 import type { InfoPage as InfoPageType } from '@/types/database'
 
@@ -29,6 +30,7 @@ function HouseContentInner() {
       {content
         ? <MarkdownRenderer content={before} />
         : <p className="text-navy/50">{t.common.no_data}</p>}
+      <div className="my-6"><HouseMap /></div>
       <div className="my-6"><PhotoCarousel section="house" /></div>
       {after && <MarkdownRenderer content={after} />}
     </div>
