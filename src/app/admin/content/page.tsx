@@ -5,7 +5,7 @@ import { supabase } from '@/lib/supabase'
 import { MarkdownRenderer } from '@/components/MarkdownRenderer'
 import type { InfoPage } from '@/types/database'
 
-const SLUGS = ['schedule', 'house', 'cars', 'explore'] as const
+const SLUGS = ['cars', 'explore'] as const
 
 export default function AdminContentPage() {
   const { t } = useI18n()
