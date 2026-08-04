@@ -63,13 +63,13 @@ function ItineraryContent() {
 
   return (
     <div className="max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold text-gray-900 mb-4">{t.itinerary.title}</h1>
+      <h1 className="text-2xl font-display font-bold text-navy mb-4">{t.itinerary.title}</h1>
 
       <div className="flex flex-wrap gap-2 mb-4">
         {FILTERS.map(f => (
           <button key={f} onClick={() => { setFilter(f); setSelected(null) }}
             className={`px-3 py-1.5 rounded-full text-sm font-medium ${
-              filter === f ? 'bg-orange-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              filter === f ? 'bg-gold text-navy' : 'bg-navy/5 text-navy/70 hover:bg-navy/10'
             }`}>
             {filterLabel[f]}
           </button>
@@ -78,23 +78,23 @@ function ItineraryContent() {
 
       {/* Desktop grid */}
       <div className="hidden md:block">
-        <div className="grid grid-cols-7 gap-1 text-center text-xs text-gray-400 mb-1">
+        <div className="grid grid-cols-7 gap-1 text-center text-xs text-navy/30 mb-1">
           {weekdayLabels.map((w, i) => <div key={i} className="capitalize py-1">{w}</div>)}
         </div>
         <div className="grid grid-cols-7 gap-1">
           {weeks.flat().map((date, i) => {
-            if (!date) return <div key={i} className="min-h-20 rounded-lg bg-gray-50/40" />
+            if (!date) return <div key={i} className="min-h-20 rounded-lg bg-cream" />
             const dayItems = itemsForDay(visible, date)
             const trip = isTrip(date)
             return (
               <button key={i} type="button" disabled={dayItems.length === 0}
                 onClick={() => setSelected(date)}
                 className={`min-h-20 rounded-lg border p-1 flex flex-col gap-0.5 text-left ${
-                  trip ? 'border-gray-200 bg-white' : 'border-transparent bg-gray-50/40'
-                } ${dayItems.length ? 'hover:border-orange-300 cursor-pointer' : 'cursor-default'} ${
-                  selected === date ? 'ring-2 ring-orange-400' : ''
+                  trip ? 'border-navy/15 bg-white' : 'border-transparent bg-cream'
+                } ${dayItems.length ? 'hover:border-gold cursor-pointer' : 'cursor-default'} ${
+                  selected === date ? 'ring-2 ring-gold' : ''
                 }`}>
-                <span className={`text-xs ${trip ? 'text-gray-700 font-semibold' : 'text-gray-300'}`}>{dayNum(date)}</span>
+                <span className={`text-xs ${trip ? 'text-navy/80 font-semibold' : 'text-navy/30'}`}>{dayNum(date)}</span>
                 {dayItems.map(item => <ItineraryPill key={item.id} item={item} />)}
               </button>
             )
@@ -107,10 +107,10 @@ function ItineraryContent() {
         {tripDates().map(date => {
           const dayItems = itemsForDay(visible, date)
           return (
-            <div key={date} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
-              <p className="text-sm font-semibold text-gray-900 capitalize mb-2">{dayLabel(date)}</p>
+            <div key={date} className="bg-white rounded-2xl border border-navy/10 shadow-[0_4px_0_rgba(26,37,54,0.08)] p-4">
+              <p className="text-sm font-semibold text-navy capitalize mb-2">{dayLabel(date)}</p>
               {dayItems.length === 0 ? (
-                <p className="text-xs text-gray-300">{t.itinerary.empty_day}</p>
+                <p className="text-xs text-navy/30">{t.itinerary.empty_day}</p>
               ) : (
                 <div className="space-y-1.5">
                   {dayItems.map(item => (
@@ -131,7 +131,7 @@ function ItineraryContent() {
       )}
 
       {items.length === 0 && (
-        <p className="text-gray-400 text-sm mt-4">{t.itinerary.empty}</p>
+        <p className="text-navy/50 text-sm mt-4">{t.itinerary.empty}</p>
       )}
     </div>
   )

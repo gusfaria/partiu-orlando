@@ -2,9 +2,9 @@
 import type { CalendarItem } from '@/lib/itinerary'
 
 const COLORS: Record<CalendarItem['type'], string> = {
-  arrival:   'bg-green-50 text-green-700 border-green-200',
-  departure: 'bg-amber-50 text-amber-700 border-amber-200',
-  activity:  'bg-orange-50 text-orange-700 border-orange-200',
+  arrival:   'bg-teal/15 text-navy border-teal/40',
+  departure: 'bg-coral/15 text-navy border-coral/40',
+  activity:  'bg-gold/15 text-navy border-gold/50',
 }
 
 type Props = { item: CalendarItem; onClick?: () => void }

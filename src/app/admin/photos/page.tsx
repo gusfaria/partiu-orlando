@@ -61,7 +61,7 @@ export default function AdminPhotosPage() {
         {SECTIONS.map(s => (
           <button key={s} onClick={() => setSection(s)}
             className={`px-3 py-1.5 rounded-lg text-sm font-medium ${
-              section === s ? 'bg-orange-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              section === s ? 'bg-gold text-navy' : 'bg-navy/5 text-navy/70 hover:bg-navy/10'
             }`}>
             {labels[s]}
           </button>
@@ -75,7 +75,7 @@ export default function AdminPhotosPage() {
       )}
 
       <button onClick={() => fileRef.current?.click()} disabled={busy}
-        className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm font-medium hover:bg-orange-600 disabled:opacity-50">
+        className="px-4 py-2 bg-gold text-navy rounded-lg text-sm font-medium hover:brightness-105 disabled:opacity-50">
         {busy ? t.profile.uploading : `+ ${t.admin.photos_upload}`}
       </button>
       <input ref={fileRef} type="file" accept="image/*" multiple onChange={onFiles} className="hidden" />
@@ -83,18 +83,18 @@ export default function AdminPhotosPage() {
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
         {photos.map((p, i) => (
-          <div key={p.id} className="bg-white rounded-xl border border-gray-100 shadow-sm p-2 space-y-2">
+          <div key={p.id} className="bg-white rounded-xl border border-navy/10 shadow-[0_4px_0_rgba(26,37,54,0.08)] p-2 space-y-2">
             <img src={publicUrl('photos', p.storage_path)} alt=""
               className="w-full aspect-[4/3] object-cover rounded-lg" />
             <input defaultValue={p.caption ?? ''} placeholder={t.admin.photos_caption}
               onBlur={e => saveCaption(p, e.target.value)}
-              className="w-full border border-gray-200 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-orange-400" />
+              className="w-full border border-navy/15 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-gold" />
             <div className="flex justify-between">
               <div className="flex gap-1">
                 <button onClick={() => move(i, -1)} disabled={i === 0}
-                  className="px-2 py-0.5 border border-gray-200 rounded text-xs disabled:opacity-30">↑</button>
+                  className="px-2 py-0.5 border border-navy/15 rounded text-xs disabled:opacity-30">↑</button>
                 <button onClick={() => move(i, 1)} disabled={i === photos.length - 1}
-                  className="px-2 py-0.5 border border-gray-200 rounded text-xs disabled:opacity-30">↓</button>
+                  className="px-2 py-0.5 border border-navy/15 rounded text-xs disabled:opacity-30">↓</button>
               </div>
               <button onClick={() => remove(p)}
                 className="px-2 py-0.5 border border-red-200 text-red-600 rounded text-xs hover:bg-red-50">✕</button>

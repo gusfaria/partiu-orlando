@@ -47,13 +47,13 @@ function ProfilePage() {
 
   return (
     <div className="max-w-md mx-auto">
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">{t.profile.title}</h1>
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 space-y-5">
+      <h1 className="text-2xl font-display font-bold text-navy mb-6">{t.profile.title}</h1>
+      <div className="bg-white rounded-2xl border border-navy/10 shadow-[0_4px_0_rgba(26,37,54,0.08)] p-6 space-y-5">
         <div className="flex items-center gap-4">
           <AvatarCircle name={name || profile.name} color={color} avatarUrl={avatarUrl} size="lg" />
           <div>
             <button onClick={() => fileRef.current?.click()} disabled={busy}
-              className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm font-medium hover:bg-orange-600 disabled:opacity-50">
+              className="px-4 py-2 bg-gold text-navy rounded-lg text-sm font-medium hover:brightness-105 disabled:opacity-50">
               {busy ? t.profile.uploading : t.profile.upload}
             </button>
             <input ref={fileRef} type="file" accept="image/*" onChange={onFile} className="hidden" />
@@ -61,12 +61,12 @@ function ProfilePage() {
           </div>
         </div>
         <div>
-          <label className="block text-xs text-gray-500 mb-1">{t.profile.name}</label>
+          <label className="block text-xs text-navy/50 mb-1">{t.profile.name}</label>
           <input value={name} onChange={e => setName(e.target.value)}
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400" />
+            className="w-full border border-navy/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
         </div>
         <div>
-          <p className="block text-xs text-gray-500 mb-2">{t.profile.color}</p>
+          <p className="block text-xs text-navy/50 mb-2">{t.profile.color}</p>
           <div className="flex flex-wrap gap-2">
             {AVATAR_COLORS.map(c => (
               <button key={c} onClick={() => setColor(c)}
@@ -77,7 +77,7 @@ function ProfilePage() {
         </div>
         <div className="flex items-center gap-3">
           <button onClick={save} disabled={busy}
-            className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm font-medium hover:bg-orange-600 disabled:opacity-50">
+            className="px-4 py-2 bg-gold text-navy rounded-lg text-sm font-medium hover:brightness-105 disabled:opacity-50">
             {t.profile.save}
           </button>
           {saved && <span className="text-sm text-green-600">{t.profile.saved}</span>}

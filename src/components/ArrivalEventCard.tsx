@@ -26,32 +26,32 @@ export function ArrivalEventCard({ event, onEdit, onDelete }: Props) {
   const departure = fmt(event.departure_date, event.departure_time)
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
+    <div className="bg-white rounded-2xl border border-navy/10 shadow-[0_4px_0_rgba(26,37,54,0.08)] p-4">
       <div className="flex items-center gap-2 mb-2 flex-wrap">
         {people.map(p => (
           <AvatarCircle key={p.id} name={p.profiles!.name} color={p.profiles!.avatar_color}
             avatarUrl={p.profiles!.avatar_url} size="sm" />
         ))}
-        <span className="text-sm font-semibold text-gray-900">
+        <span className="text-sm font-semibold font-display text-navy">
           {people.map(p => p.profiles!.name).join(', ')}
         </span>
       </div>
 
-      <p className="text-sm text-gray-700">{event.description}</p>
-      <p className="text-xs text-gray-400 mt-0.5">🚗 {event.transportation}</p>
+      <p className="text-sm text-navy/80">{event.description}</p>
+      <p className="text-xs text-navy/50 mt-0.5">🚗 {event.transportation}</p>
 
       <div className="mt-2 space-y-0.5">
         {arrival && (
-          <p className="text-sm text-gray-600">↓ {t.arrivals.arrival}: {arrival}</p>
+          <p className="text-sm text-navy/70">↓ {t.arrivals.arrival}: {arrival}</p>
         )}
         {departure && (
-          <p className="text-sm text-gray-600">↑ {t.arrivals.departure}: {departure}</p>
+          <p className="text-sm text-navy/70">↑ {t.arrivals.departure}: {departure}</p>
         )}
       </div>
 
-      <div className="flex justify-end gap-2 mt-3 pt-3 border-t border-gray-100">
+      <div className="flex justify-end gap-2 mt-3 pt-3 border-t border-navy/10">
         <button onClick={onEdit}
-          className="px-3 py-1.5 border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50">
+          className="px-3 py-1.5 border border-navy/15 rounded-lg text-sm text-navy/70 hover:bg-navy/5">
           {t.arrivals.edit}
         </button>
         <button onClick={onDelete}

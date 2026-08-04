@@ -1,4 +1,5 @@
-import { InfoPage } from '@/components/InfoPage'
+import { HouseContent } from '@/components/HouseContent'
+
 export default function HousePage() {
-  return <InfoPage slug="house" fallbackTitle="A Casa" />
+  return <HouseContent />
 }

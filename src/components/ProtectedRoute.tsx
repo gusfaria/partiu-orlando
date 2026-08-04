@@ -22,7 +22,7 @@ export function ProtectedRoute({ children, adminOnly = false }: Props) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-gray-400">
+      <div className="min-h-screen flex items-center justify-center text-navy/50">
         {t.common.loading}
       </div>
     )

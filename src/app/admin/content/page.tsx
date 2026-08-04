@@ -5,7 +5,7 @@ import { supabase } from '@/lib/supabase'
 import { MarkdownRenderer } from '@/components/MarkdownRenderer'
 import type { InfoPage } from '@/types/database'
 
-const SLUGS = ['schedule', 'house', 'cars', 'explore'] as const
+const SLUGS = ['cars', 'explore'] as const
 
 export default function AdminContentPage() {
   const { t } = useI18n()
@@ -44,7 +44,7 @@ export default function AdminContentPage() {
         {SLUGS.map(slug => (
           <button key={slug} onClick={() => setActiveSlug(slug)}
             className={`px-3 py-1.5 rounded-lg text-sm font-medium ${
-              activeSlug === slug ? 'bg-orange-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              activeSlug === slug ? 'bg-gold text-navy' : 'bg-navy/5 text-navy/70 hover:bg-navy/10'
             }`}>
             {pages.find(p => p.slug === slug)?.title ?? slug}
           </button>
@@ -52,26 +52,26 @@ export default function AdminContentPage() {
       </div>
 
       <div className="flex items-center justify-between">
-        <p className="text-sm text-gray-500">Markdown</p>
+        <p className="text-sm text-navy/50">Markdown</p>
         <button onClick={() => setPreview(v => !v)}
-          className="text-sm text-orange-500 hover:underline">
+          className="text-sm text-navy underline decoration-gold decoration-2 underline-offset-2">
           {preview ? t.admin.edit_content : 'Preview'}
         </button>
       </div>
 
       {preview ? (
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 min-h-[300px]">
+        <div className="bg-white rounded-2xl border border-navy/10 shadow-[0_4px_0_rgba(26,37,54,0.08)] p-6 min-h-[300px]">
           <MarkdownRenderer content={draft} />
         </div>
       ) : (
         <textarea value={draft} onChange={e => setDraft(e.target.value)} rows={20}
           placeholder="Escreva em Markdown..."
-          className="w-full border border-gray-300 rounded-2xl px-4 py-3 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-orange-400 resize-y" />
+          className="w-full border border-navy/20 rounded-2xl px-4 py-3 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-gold resize-y" />
       )}
 
       <div className="flex items-center gap-3">
         <button onClick={saveContent} disabled={saving}
-          className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm font-medium hover:bg-orange-600 disabled:opacity-50">
+          className="px-4 py-2 bg-gold text-navy rounded-lg text-sm font-medium hover:brightness-105 disabled:opacity-50">
           {saving ? '...' : t.admin.save}
         </button>
         {saved && <span className="text-sm text-green-600">{t.common.saved}</span>}
