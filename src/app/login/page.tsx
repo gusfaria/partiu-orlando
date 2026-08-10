@@ -45,7 +45,9 @@ export default function LoginPage() {
         <div className="flex justify-center mb-6">
           <ScallopedBadge>
             <p className="font-display text-3xl font-bold text-gold leading-tight">PARTIU<br />ORLANDO</p>
-            <p className="font-ticket text-cream text-lg mt-1">40 + 45</p>
+            <p className="font-ticket text-cream text-lg mt-1">
+              Gustavo | Philipe
+            </p>
             <p className="font-ticket text-cream/60 text-[10px] tracking-widest mt-1">A FAMILY ADVENTURE · EST. 2026</p>
           </ScallopedBadge>
         </div>

@@ -50,7 +50,9 @@ function HomePage() {
         <div className="flex justify-center mb-2">
           <ScallopedBadge>
             <p className="font-display text-2xl font-bold text-gold leading-tight">PARTIU ORLANDO</p>
-            <p className="font-ticket text-cream text-base mt-1">40 + 45</p>
+              <p className="font-ticket text-cream text-base mt-1">
+                Gustavo | Philipe
+              </p>
           </ScallopedBadge>
         </div>
         <Countdown />

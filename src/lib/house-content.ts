@@ -19,11 +19,8 @@ Kissimmee, FL
 [mapa]
 
 ## 🗓️ Datas
-
-| | |
-|---|---|
-| **Check-in** | Sexta, 9 de outubro — a partir das 16h |
-| **Check-out** | Domingo, 18 de outubro — até às 10h |
+- **Check-in:** Sexta, 9 de outubro — a partir das 16h
+- **Check-out:** Domingo, 18 de outubro — até às 10h 
 
 ## 🏠 Sobre a casa
 
@@ -50,14 +47,10 @@ Kissimmee, FL
 [mapa]
 
 ## 🗓️ Dates
-
-| | |
-|---|---|
-| **Check-in** | Friday, October 9 — from 4pm |
-| **Check-out** | Sunday, October 18 — until 10am |
+- **Check-in:** Friday, October 9 — from 4pm
+- **Check-out:** Sunday, October 18 — until 10am
 
 ## 🏠 About the house
-
 - **7 bedrooms** • **7 bathrooms** • sleeps up to **14**
 - **Private pool**
 - Inside Solara Resort, minutes from the Disney parks
