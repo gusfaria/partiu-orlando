@@ -14,7 +14,7 @@ function evt(o: Partial<ArrivalEventWithPeople>): ArrivalEventWithPeople {
 }
 function person(name: string) {
   return { id: 'p' + name, event_id: 'e1', user_id: 'u' + name,
-    profiles: { id: 'u' + name, name, is_admin: false, avatar_color: '#fff', avatar_url: null, created_at: '' } }
+    profiles: { id: 'u' + name, name, email: null, is_admin: false, avatar_color: '#fff', avatar_url: null, created_at: '' } }
 }
 function act(o: Partial<Activity>): Activity {
   return {

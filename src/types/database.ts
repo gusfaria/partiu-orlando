@@ -1,6 +1,7 @@
 export type Profile = {
   id: string
   name: string
+  email: string | null
   is_admin: boolean
   avatar_color: string
   avatar_url: string | null

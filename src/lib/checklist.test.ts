@@ -3,7 +3,7 @@ import { checklistItems } from './checklist'
 import type { Profile } from '@/types/database'
 
 const profile = (avatar_url: string | null): Profile =>
-  ({ id: 'u1', name: 'Ana', is_admin: false, avatar_color: '#fff', avatar_url, created_at: '' })
+  ({ id: 'u1', name: 'Ana', email: null, is_admin: false, avatar_color: '#fff', avatar_url, created_at: '' })
 
 describe('checklistItems', () => {
   it('lists both when nothing done', () => {

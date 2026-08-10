@@ -87,6 +87,8 @@
     "delete": "Excluir",
     "edit": "Editar",
     "cancel": "Cancelar",
+    "admin_role": "Admin",
+    "you": "você",
     "create_activity": "Nova atividade",
     "activity_title": "Título",
     "activity_date": "Data",
