@@ -1,5 +1,6 @@
 'use client'
 import { useI18n } from '@/lib/i18n/context'
+import { transportEmoji } from '@/lib/arrival-event'
 import { AvatarCircle } from './AvatarCircle'
 import type { ArrivalEventWithPeople } from '@/types/database'
 
@@ -38,7 +39,7 @@ export function ArrivalEventCard({ event, onEdit, onDelete }: Props) {
       </div>
 
       <p className="text-sm text-navy/80">{event.description}</p>
-      <p className="text-xs text-navy/50 mt-0.5">🚗 {event.transportation}</p>
+      <p className="text-xs text-navy/50 mt-0.5">{transportEmoji(event.transportation)} {event.transportation}</p>
 
       <div className="mt-2 space-y-0.5">
         {arrival && (

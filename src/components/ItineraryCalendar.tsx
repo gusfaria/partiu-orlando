@@ -13,6 +13,15 @@ import type { ArrivalEventWithPeople, Activity } from '@/types/database'
 
 const FILTERS: FilterType[] = ['all', 'arrival', 'departure', 'activity']
 
+// Color-code each filter to match the calendar items it shows.
+// Literal class names so Tailwind can see them (no dynamic construction).
+const FILTER_STYLE: Record<FilterType, { active: string; idle: string }> = {
+  all:       { active: 'bg-navy text-cream',  idle: 'bg-navy/5 text-navy/70 hover:bg-navy/10' },
+  arrival:   { active: 'bg-teal text-white',  idle: 'bg-teal/15 text-navy hover:bg-teal/25' },
+  departure: { active: 'bg-coral text-white', idle: 'bg-coral/15 text-navy hover:bg-coral/25' },
+  activity:  { active: 'bg-gold text-navy',   idle: 'bg-gold/15 text-navy hover:bg-gold/25' },
+}
+
 function ItineraryContent() {
   const { t, lang } = useI18n()
   const locale = lang === 'pt' ? 'pt-BR' : 'en-US'
@@ -68,8 +77,8 @@ function ItineraryContent() {
       <div className="flex flex-wrap gap-2 mb-4">
         {FILTERS.map(f => (
           <button key={f} onClick={() => { setFilter(f); setSelected(null) }}
-            className={`px-3 py-1.5 rounded-full text-sm font-medium ${
-              filter === f ? 'bg-gold text-navy' : 'bg-navy/5 text-navy/70 hover:bg-navy/10'
+            className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+              filter === f ? FILTER_STYLE[f].active : FILTER_STYLE[f].idle
             }`}>
             {filterLabel[f]}
           </button>

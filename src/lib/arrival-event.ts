@@ -1,5 +1,17 @@
 import type { ArrivalEventWithPeople } from '@/types/database'
 
+// Transportation options come from a fixed <select> (Carro/Trem/Avião).
+// Shared so the arrivals card and the calendar always show the same emoji.
+const TRANSPORT_EMOJI: Record<string, string> = {
+  'Avião': '✈️',
+  'Carro': '🚗',
+  'Trem': '🚆',
+}
+
+export function transportEmoji(transportation: string): string {
+  return TRANSPORT_EMOJI[transportation] ?? '🧳'
+}
+
 export type ArrivalEventFormValue = {
   description: string
   transportation: string

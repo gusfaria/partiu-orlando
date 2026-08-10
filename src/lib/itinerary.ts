@@ -1,4 +1,5 @@
 import type { ArrivalEventWithPeople, Activity } from '@/types/database'
+import { transportEmoji } from './arrival-event'
 
 export type ItemType = 'arrival' | 'departure' | 'activity'
 export type FilterType = 'all' | ItemType
@@ -25,12 +26,6 @@ export const TRIP_MONTH = 9 // October, 0-indexed
 export const TRIP_START = '2026-10-09'
 export const TRIP_END = '2026-10-18'
 
-const TRANSPORT_EMOJI: Record<string, string> = {
-  'Avião': '✈️',
-  'Carro': '🚗',
-  'Trem': '🚆',
-}
-
 function peopleNames(event: ArrivalEventWithPeople): string[] {
   return event.arrival_event_people
     .filter(p => p.profiles != null)
@@ -45,7 +40,7 @@ export function buildCalendarItems(
   for (const e of events) {
     const names = peopleNames(e)
     const label = names.join(', ')
-    const emoji = TRANSPORT_EMOJI[e.transportation] ?? '🧳'
+    const emoji = transportEmoji(e.transportation)
     const detail = { description: e.description, transportation: e.transportation, people: names }
     if (e.arrival_date) {
       items.push({ id: `arrival-${e.id}`, type: 'arrival', date: e.arrival_date,

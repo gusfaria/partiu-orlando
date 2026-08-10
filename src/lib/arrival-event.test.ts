@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { isArrivalEventFormValid, hasLoggedArrival, type ArrivalEventFormValue } from './arrival-event'
+import { isArrivalEventFormValid, hasLoggedArrival, transportEmoji, type ArrivalEventFormValue } from './arrival-event'
 import type { ArrivalEventWithPeople } from '@/types/database'
 
 const validForm: ArrivalEventFormValue = {
@@ -30,6 +30,18 @@ describe('isArrivalEventFormValid', () => {
   })
   it('rejects when no people are selected', () => {
     expect(isArrivalEventFormValid({ ...validForm, personIds: [] })).toBe(false)
+  })
+})
+
+describe('transportEmoji', () => {
+  it('maps each transportation option to its emoji', () => {
+    expect(transportEmoji('Avião')).toBe('✈️')
+    expect(transportEmoji('Carro')).toBe('🚗')
+    expect(transportEmoji('Trem')).toBe('🚆')
+  })
+  it('falls back to luggage for anything unexpected', () => {
+    expect(transportEmoji('')).toBe('🧳')
+    expect(transportEmoji('Foguete')).toBe('🧳')
   })
 })
 

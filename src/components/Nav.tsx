@@ -20,7 +20,6 @@ export function Nav() {
     { href: '/activities', label: t.nav.activities },
     { href: '/house',      label: t.nav.house },
     { href: '/cars',       label: t.nav.cars },
-    { href: '/explore',    label: t.nav.explore },
   ]
 
   const linkClass = (href: string) =>
