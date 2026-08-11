@@ -76,7 +76,7 @@ function ItineraryContent() {
   }, [selected])
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-6xl mx-auto">
       <h1 className="text-2xl font-display font-bold text-navy mb-4">{t.itinerary.title}</h1>
 
       <div className="flex flex-wrap gap-2 mb-4">
@@ -92,18 +92,18 @@ function ItineraryContent() {
 
       {/* Desktop grid */}
       <div className="hidden md:block">
-        <div className="grid grid-cols-7 gap-1 text-center text-xs text-navy/30 mb-1">
+        <div className="grid grid-cols-7 gap-1.5 text-center text-xs text-navy/30 mb-1">
           {weekdayLabels.map((w, i) => <div key={i} className="capitalize py-1">{w}</div>)}
         </div>
-        <div className="grid grid-cols-7 gap-1">
+        <div className="grid grid-cols-7 gap-1.5">
           {weeks.flat().map((date, i) => {
-            if (!date) return <div key={i} className="min-h-20 rounded-lg bg-cream" />
+            if (!date) return <div key={i} className="min-h-28 rounded-lg bg-cream" />
             const dayItems = itemsForDay(visible, date)
             const trip = isTrip(date)
             return (
               <button key={i} type="button" disabled={dayItems.length === 0}
                 onClick={() => setSelected(date)}
-                className={`min-h-20 rounded-lg border p-1 flex flex-col gap-0.5 text-left ${
+                className={`min-h-28 rounded-lg border p-1.5 flex flex-col gap-1 text-left ${
                   trip ? 'border-navy/15 bg-white' : 'border-transparent bg-cream'
                 } ${dayItems.length ? 'hover:border-gold cursor-pointer' : 'cursor-default'} ${
                   selected === date ? 'ring-2 ring-gold' : ''
@@ -138,7 +138,7 @@ function ItineraryContent() {
       </div>
 
       {selected && (
-        <div ref={detailRef}>
+        <div ref={detailRef} className="max-w-3xl">
           <ItineraryDayDetail dateLabel={dayLabel(selected)} items={selectedItems}
             onClose={() => setSelected(null)} />
         </div>

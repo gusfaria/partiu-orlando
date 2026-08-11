@@ -11,11 +11,12 @@ const COLORS: Record<CalendarItem['type'], string> = {
 type Props = { item: CalendarItem; onClick?: () => void }
 
 export function ItineraryPill({ item, onClick }: Props) {
-  const className = `w-full truncate rounded-md border px-1.5 py-0.5 text-left text-xs font-medium ${COLORS[item.type]}`
+  // line-clamp (not truncate) so wider calendar cells show two lines of the label
+  const className = `w-full line-clamp-2 break-words leading-snug rounded-md border px-1.5 py-0.5 text-left text-xs font-medium ${COLORS[item.type]}`
 
   if (!onClick) {
     return (
-      <span className={`block ${className}`} title={item.label}>
+      <span className={className} title={item.label}>
         {item.emoji} {item.label}
       </span>
     )
