@@ -11,6 +11,7 @@ function AdminLayout({ children }: { children: React.ReactNode }) {
   const tabs = [
     { href: '/admin/users',      label: t.admin.users },
     { href: '/admin/activities', label: t.admin.activities },
+    { href: '/admin/markers',    label: t.admin.markers },
     { href: '/admin/content',    label: t.admin.content },
     { href: '/admin/photos',     label: t.admin.photos },
   ]

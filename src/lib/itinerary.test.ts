@@ -3,7 +3,7 @@ import {
   buildCalendarItems, filterItems, itemsForDay, buildMonthGrid, tripDates,
   type CalendarItem,
 } from './itinerary'
-import type { ArrivalEventWithPeople, Activity } from '@/types/database'
+import type { ArrivalEventWithPeople, Activity, CalendarMarker } from '@/types/database'
 
 function evt(o: Partial<ArrivalEventWithPeople>): ArrivalEventWithPeople {
   return {
@@ -21,6 +21,10 @@ function act(o: Partial<Activity>): Activity {
     id: 'a1', title: 'Magic Kingdom', description: 'park', activity_date: null, activity_time: null,
     cost_per_person: null, cost_notes: null, ticket_url: null, display_order: 0, created_at: '', ...o,
   }
+}
+function mkr(o: Partial<CalendarMarker>): CalendarMarker {
+  return { id: 'm1', label: 'Check-out da casa', emoji: '🧳', event_date: '2026-10-18',
+    event_time: null, display_order: 0, created_at: '', ...o }
 }
 
 describe('buildCalendarItems', () => {
@@ -51,6 +55,15 @@ describe('buildCalendarItems', () => {
       arrival_event_people: [person('Gui')] })], [])
     expect(items[0].emoji).toBe('🧳')
   })
+  it('makes a full-day marker item with its own emoji and label', () => {
+    const items = buildCalendarItems([], [], [mkr({ label: 'Dia livre', emoji: '🏖️', event_date: '2026-10-14' })])
+    expect(items).toHaveLength(1)
+    expect(items[0]).toMatchObject({ type: 'marker', date: '2026-10-14', time: null, emoji: '🏖️', label: 'Dia livre' })
+  })
+  it('gives a timed marker its time', () => {
+    const items = buildCalendarItems([], [], [mkr({ event_date: '2026-10-09', event_time: '16:00:00' })])
+    expect(items[0].time).toBe('16:00')
+  })
 })
 
 describe('filterItems', () => {
@@ -58,12 +71,16 @@ describe('filterItems', () => {
     { id: 'arrival-1', type: 'arrival', date: '2026-10-09', time: null, emoji: '✈️', label: 'A', detail: {} },
     { id: 'departure-1', type: 'departure', date: '2026-10-18', time: null, emoji: '✈️', label: 'A', detail: {} },
     { id: 'activity-1', type: 'activity', date: '2026-10-11', time: null, emoji: '🎢', label: 'MK', detail: {} },
+    { id: 'marker-1', type: 'marker', date: '2026-10-18', time: null, emoji: '🧳', label: 'Check-out', detail: {} },
   ]
   it('returns everything for all', () => {
-    expect(filterItems(items, 'all')).toHaveLength(3)
+    expect(filterItems(items, 'all')).toHaveLength(4)
   })
   it('returns only the matching type', () => {
     expect(filterItems(items, 'activity').map(i => i.id)).toEqual(['activity-1'])
+  })
+  it('filters to markers only', () => {
+    expect(filterItems(items, 'marker').map(i => i.id)).toEqual(['marker-1'])
   })
 })
 
@@ -75,6 +92,21 @@ describe('itemsForDay', () => {
   ]
   it('returns only that day, sorted by time', () => {
     expect(itemsForDay(items, '2026-10-11').map(i => i.label)).toEqual(['AM', 'PM'])
+  })
+  it('floats a full-day marker to the top of the day', () => {
+    const dayItems: CalendarItem[] = [
+      { id: 'activity-1', type: 'activity', date: '2026-10-09', time: '09:00', emoji: '🎢', label: 'Park', detail: {} },
+      { id: 'marker-1', type: 'marker', date: '2026-10-09', time: null, emoji: '🔑', label: 'Check-in', detail: {} },
+      { id: 'arrival-1', type: 'arrival', date: '2026-10-09', time: '11:00', emoji: '✈️', label: 'Gui', detail: {} },
+    ]
+    expect(itemsForDay(dayItems, '2026-10-09').map(i => i.label)).toEqual(['Check-in', 'Park', 'Gui'])
+  })
+  it('keeps a timed marker in time order', () => {
+    const dayItems: CalendarItem[] = [
+      { id: 'activity-1', type: 'activity', date: '2026-10-09', time: '09:00', emoji: '🎢', label: 'Park', detail: {} },
+      { id: 'marker-1', type: 'marker', date: '2026-10-09', time: '16:00', emoji: '🔑', label: 'Check-in', detail: {} },
+    ]
+    expect(itemsForDay(dayItems, '2026-10-09').map(i => i.label)).toEqual(['Park', 'Check-in'])
   })
 })
 

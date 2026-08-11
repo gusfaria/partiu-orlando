@@ -9,9 +9,9 @@ import {
   buildCalendarItems, filterItems, itemsForDay, buildMonthGrid, tripDates,
   TRIP_YEAR, TRIP_MONTH, TRIP_START, TRIP_END, type FilterType,
 } from '@/lib/itinerary'
-import type { ArrivalEventWithPeople, Activity } from '@/types/database'
+import type { ArrivalEventWithPeople, Activity, CalendarMarker } from '@/types/database'
 
-const FILTERS: FilterType[] = ['all', 'arrival', 'departure', 'activity']
+const FILTERS: FilterType[] = ['all', 'arrival', 'departure', 'activity', 'marker']
 
 // Color-code each filter to match the calendar items it shows.
 // Literal class names so Tailwind can see them (no dynamic construction).
@@ -20,6 +20,7 @@ const FILTER_STYLE: Record<FilterType, { active: string; idle: string }> = {
   arrival:   { active: 'bg-teal text-white',  idle: 'bg-teal/15 text-navy hover:bg-teal/25' },
   departure: { active: 'bg-coral text-white', idle: 'bg-coral/15 text-navy hover:bg-coral/25' },
   activity:  { active: 'bg-gold text-navy',   idle: 'bg-gold/15 text-navy hover:bg-gold/25' },
+  marker:    { active: 'bg-pink text-navy',   idle: 'bg-pink/20 text-navy hover:bg-pink/30' },
 }
 
 function ItineraryContent() {
@@ -27,6 +28,7 @@ function ItineraryContent() {
   const locale = lang === 'pt' ? 'pt-BR' : 'en-US'
   const [events, setEvents] = useState<ArrivalEventWithPeople[]>([])
   const [activities, setActivities] = useState<Activity[]>([])
+  const [markers, setMarkers] = useState<CalendarMarker[]>([])
   const [filter, setFilter] = useState<FilterType>('all')
   const [selected, setSelected] = useState<string | null>(null)
   const detailRef = useRef<HTMLDivElement>(null)
@@ -36,9 +38,11 @@ function ItineraryContent() {
       .then(({ data }) => setEvents((data as ArrivalEventWithPeople[]) ?? []))
     supabase.from('activities').select('*')
       .then(({ data }) => setActivities((data as Activity[]) ?? []))
+    supabase.from('calendar_markers').select('*').order('display_order')
+      .then(({ data }) => setMarkers((data as CalendarMarker[]) ?? []))
   }, [])
 
-  const items = useMemo(() => buildCalendarItems(events, activities), [events, activities])
+  const items = useMemo(() => buildCalendarItems(events, activities, markers), [events, activities, markers])
   const visible = useMemo(() => filterItems(items, filter), [items, filter])
   const weeks = useMemo(() => buildMonthGrid(TRIP_YEAR, TRIP_MONTH), [])
 
@@ -53,6 +57,7 @@ function ItineraryContent() {
     arrival: t.itinerary.filter_arrivals,
     departure: t.itinerary.filter_departures,
     activity: t.itinerary.filter_activities,
+    marker: t.itinerary.filter_markers,
   }
 
   function isTrip(date: string) { return date >= TRIP_START && date <= TRIP_END }

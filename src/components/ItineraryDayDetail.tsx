@@ -10,6 +10,7 @@ export function ItineraryDayDetail({ dateLabel, items, onClose }: Props) {
   const typeLabel = (type: ItemType) =>
     type === 'arrival' ? t.itinerary.arrival
     : type === 'departure' ? t.itinerary.departure
+    : type === 'marker' ? t.itinerary.marker
     : t.itinerary.activity
 
   return (

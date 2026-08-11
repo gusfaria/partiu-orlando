@@ -29,6 +29,16 @@ export type ActivitySignup = {
   created_at: string
 }
 
+export type CalendarMarker = {
+  id: string
+  label: string
+  emoji: string
+  event_date: string
+  event_time: string | null
+  display_order: number
+  created_at: string
+}
+
 export type InfoPage = {
   slug: string
   title: string

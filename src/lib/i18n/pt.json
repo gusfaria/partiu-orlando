@@ -105,7 +105,12 @@
     "photos_hero": "Capa",
     "photos_upload": "Enviar fotos",
     "photos_caption": "Legenda",
-    "photos_hero_note": "Apenas a primeira foto aparece na página inicial."
+    "photos_hero_note": "Apenas a primeira foto aparece na página inicial.",
+    "markers": "Marcos",
+    "create_marker": "Novo marco",
+    "marker_label": "Descrição",
+    "marker_emoji": "Emoji",
+    "marker_full_day": "Dia inteiro"
   },
   "cars": {
     "section_title": "Carros dos Convidados",
@@ -138,9 +143,11 @@
     "filter_arrivals": "Chegadas",
     "filter_departures": "Saídas",
     "filter_activities": "Atividades",
+    "filter_markers": "Marcos",
     "arrival": "Chegada",
     "departure": "Saída",
     "activity": "Atividade",
+    "marker": "Marco",
     "transportation": "Transporte",
     "cost": "Custo por pessoa",
     "buy_tickets": "Comprar ingressos",

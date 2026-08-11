@@ -1,7 +1,7 @@
-import type { ArrivalEventWithPeople, Activity } from '@/types/database'
+import type { ArrivalEventWithPeople, Activity, CalendarMarker } from '@/types/database'
 import { transportEmoji } from './arrival-event'
 
-export type ItemType = 'arrival' | 'departure' | 'activity'
+export type ItemType = 'arrival' | 'departure' | 'activity' | 'marker'
 export type FilterType = 'all' | ItemType
 
 export type CalendarItem = {
@@ -35,6 +35,7 @@ function peopleNames(event: ArrivalEventWithPeople): string[] {
 export function buildCalendarItems(
   events: ArrivalEventWithPeople[],
   activities: Activity[],
+  markers: CalendarMarker[] = [],
 ): CalendarItem[] {
   const items: CalendarItem[] = []
   for (const e of events) {
@@ -59,6 +60,10 @@ export function buildCalendarItems(
           cost_notes: a.cost_notes, ticket_url: a.ticket_url } })
     }
   }
+  for (const m of markers) {
+    items.push({ id: `marker-${m.id}`, type: 'marker', date: m.event_date,
+      time: m.event_time?.slice(0, 5) ?? null, emoji: m.emoji, label: m.label, detail: {} })
+  }
   return items
 }
 
@@ -68,9 +73,15 @@ export function filterItems(items: CalendarItem[], filter: FilterType): Calendar
 }
 
 export function itemsForDay(items: CalendarItem[], date: string): CalendarItem[] {
+  // Full-day markers (no time) lead the day; everything else follows by time.
+  const isFullDayMarker = (i: CalendarItem) => i.type === 'marker' && !i.time
   return items
     .filter(i => i.date === date)
-    .sort((a, b) => (a.time ?? '').localeCompare(b.time ?? ''))
+    .sort((a, b) => {
+      const af = isFullDayMarker(a), bf = isFullDayMarker(b)
+      if (af !== bf) return af ? -1 : 1
+      return (a.time ?? '').localeCompare(b.time ?? '')
+    })
 }
 
 export function buildMonthGrid(year: number, month: number): (string | null)[][] {

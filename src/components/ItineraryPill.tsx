@@ -5,6 +5,7 @@ const COLORS: Record<CalendarItem['type'], string> = {
   arrival:   'bg-teal/15 text-navy border-teal/40',
   departure: 'bg-coral/15 text-navy border-coral/40',
   activity:  'bg-gold/15 text-navy border-gold/50',
+  marker:    'bg-pink/20 text-navy border-pink/50',
 }
 
 type Props = { item: CalendarItem; onClick?: () => void }

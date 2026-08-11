@@ -105,7 +105,12 @@
     "photos_hero": "Cover",
     "photos_upload": "Upload photos",
     "photos_caption": "Caption",
-    "photos_hero_note": "Only the first photo appears on the home page."
+    "photos_hero_note": "Only the first photo appears on the home page.",
+    "markers": "Markers",
+    "create_marker": "New marker",
+    "marker_label": "Label",
+    "marker_emoji": "Emoji",
+    "marker_full_day": "Full day"
   },
   "cars": {
     "section_title": "Guest Cars",
@@ -138,9 +143,11 @@
     "filter_arrivals": "Arrivals",
     "filter_departures": "Departures",
     "filter_activities": "Activities",
+    "filter_markers": "Markers",
     "arrival": "Arrival",
     "departure": "Departure",
     "activity": "Activity",
+    "marker": "Marker",
     "transportation": "Transportation",
     "cost": "Cost per person",
     "buy_tickets": "Buy tickets",
