@@ -43,9 +43,9 @@ describe('buildCalendarItems', () => {
   it('skips events with no dates', () => {
     expect(buildCalendarItems([evt({ arrival_event_people: [person('Gui')] })], [])).toHaveLength(0)
   })
-  it('makes an activity item with 🎢 and the title', () => {
+  it('makes an activity item with no emoji and the title', () => {
     const items = buildCalendarItems([], [act({ activity_date: '2026-10-11', activity_time: '09:30:00', title: 'Magic Kingdom' })])
-    expect(items[0]).toMatchObject({ type: 'activity', date: '2026-10-11', time: '09:30', emoji: '🎢', label: 'Magic Kingdom' })
+    expect(items[0]).toMatchObject({ type: 'activity', date: '2026-10-11', time: '09:30', emoji: '', label: 'Magic Kingdom' })
   })
   it('skips activities with no date', () => {
     expect(buildCalendarItems([], [act({ activity_date: null })])).toHaveLength(0)
@@ -70,7 +70,7 @@ describe('filterItems', () => {
   const items: CalendarItem[] = [
     { id: 'arrival-1', type: 'arrival', date: '2026-10-09', time: null, emoji: '✈️', label: 'A', detail: {} },
     { id: 'departure-1', type: 'departure', date: '2026-10-18', time: null, emoji: '✈️', label: 'A', detail: {} },
-    { id: 'activity-1', type: 'activity', date: '2026-10-11', time: null, emoji: '🎢', label: 'MK', detail: {} },
+    { id: 'activity-1', type: 'activity', date: '2026-10-11', time: null, emoji: '', label: 'MK', detail: {} },
     { id: 'marker-1', type: 'marker', date: '2026-10-18', time: null, emoji: '🧳', label: 'Check-out', detail: {} },
   ]
   it('returns everything for all', () => {
@@ -86,7 +86,7 @@ describe('filterItems', () => {
 
 describe('itemsForDay', () => {
   const items: CalendarItem[] = [
-    { id: 'activity-1', type: 'activity', date: '2026-10-11', time: '14:00', emoji: '🎢', label: 'PM', detail: {} },
+    { id: 'activity-1', type: 'activity', date: '2026-10-11', time: '14:00', emoji: '', label: 'PM', detail: {} },
     { id: 'arrival-1', type: 'arrival', date: '2026-10-11', time: '09:00', emoji: '✈️', label: 'AM', detail: {} },
     { id: 'arrival-2', type: 'arrival', date: '2026-10-12', time: null, emoji: '✈️', label: 'Other', detail: {} },
   ]
@@ -95,7 +95,7 @@ describe('itemsForDay', () => {
   })
   it('floats a full-day marker to the top of the day', () => {
     const dayItems: CalendarItem[] = [
-      { id: 'activity-1', type: 'activity', date: '2026-10-09', time: '09:00', emoji: '🎢', label: 'Park', detail: {} },
+      { id: 'activity-1', type: 'activity', date: '2026-10-09', time: '09:00', emoji: '', label: 'Park', detail: {} },
       { id: 'marker-1', type: 'marker', date: '2026-10-09', time: null, emoji: '🔑', label: 'Check-in', detail: {} },
       { id: 'arrival-1', type: 'arrival', date: '2026-10-09', time: '11:00', emoji: '✈️', label: 'Gui', detail: {} },
     ]
@@ -103,7 +103,7 @@ describe('itemsForDay', () => {
   })
   it('keeps a timed marker in time order', () => {
     const dayItems: CalendarItem[] = [
-      { id: 'activity-1', type: 'activity', date: '2026-10-09', time: '09:00', emoji: '🎢', label: 'Park', detail: {} },
+      { id: 'activity-1', type: 'activity', date: '2026-10-09', time: '09:00', emoji: '', label: 'Park', detail: {} },
       { id: 'marker-1', type: 'marker', date: '2026-10-09', time: '16:00', emoji: '🔑', label: 'Check-in', detail: {} },
     ]
     expect(itemsForDay(dayItems, '2026-10-09').map(i => i.label)).toEqual(['Park', 'Check-in'])

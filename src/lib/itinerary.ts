@@ -55,7 +55,7 @@ export function buildCalendarItems(
   for (const a of activities) {
     if (a.activity_date) {
       items.push({ id: `activity-${a.id}`, type: 'activity', date: a.activity_date,
-        time: a.activity_time?.slice(0, 5) ?? null, emoji: '🎢', label: a.title,
+        time: a.activity_time?.slice(0, 5) ?? null, emoji: '', label: a.title,
         detail: { description: a.description, cost_per_person: a.cost_per_person,
           cost_notes: a.cost_notes, ticket_url: a.ticket_url } })
     }

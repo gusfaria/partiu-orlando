@@ -13,11 +13,13 @@ type Props = { item: CalendarItem; onClick?: () => void }
 export function ItineraryPill({ item, onClick }: Props) {
   // line-clamp (not truncate) so wider calendar cells show two lines of the label
   const className = `w-full line-clamp-2 break-words leading-snug rounded-md border px-1.5 py-0.5 text-left text-xs font-medium ${COLORS[item.type]}`
+  // Activities carry no emoji — skip the separator so the label doesn't start with a space.
+  const text = [item.emoji, item.label].filter(Boolean).join(' ')
 
   if (!onClick) {
     return (
       <span className={className} title={item.label}>
-        {item.emoji} {item.label}
+        {text}
       </span>
     )
   }
@@ -29,7 +31,7 @@ export function ItineraryPill({ item, onClick }: Props) {
       className={className}
       title={item.label}
     >
-      {item.emoji} {item.label}
+      {text}
     </button>
   )
 }

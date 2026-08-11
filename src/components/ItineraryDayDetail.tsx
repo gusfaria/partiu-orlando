@@ -27,7 +27,7 @@ export function ItineraryDayDetail({ dateLabel, items, onClose }: Props) {
           {items.map(item => (
             <div key={item.id} className="border-b border-navy/10 pb-3 last:border-0 last:pb-0">
               <p className="text-sm font-semibold text-navy">
-                {item.emoji} {item.label}
+                {[item.emoji, item.label].filter(Boolean).join(' ')}
                 <span className="text-xs font-normal text-navy/50">
                   {' · '}{typeLabel(item.type)}{item.time ? ` · ${item.time}` : ''}
                 </span>
