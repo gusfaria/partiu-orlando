@@ -3,10 +3,9 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useI18n } from '@/lib/i18n/context'
-import { ScallopedBadge } from '@/components/brand/ScallopedBadge'
-import { TicketCard } from '@/components/brand/TicketCard'
 import { BrandButton } from '@/components/brand/BrandButton'
-import { SunburstBg } from '@/components/brand/SunburstBg'
+import { Crest } from '@/components/brand/Crest'
+import { CARD_CLASS, FIELD_LABEL_CLASS, INPUT_CLASS } from '@/components/brand/styles'
 
 export default function LoginPage() {
   const { t, lang, setLang } = useI18n()
@@ -31,7 +30,8 @@ export default function LoginPage() {
 
   return (
     <div className="fixed inset-0 bg-navy flex items-center justify-center px-4 py-8 overflow-y-auto">
-      <SunburstBg />
+      <div aria-hidden="true"
+        className="absolute inset-0 bg-[radial-gradient(120%_60%_at_50%_0%,#2a3b56_0%,transparent_60%)]" />
       <div className="relative w-full max-w-sm">
         <div className="flex justify-end mb-4">
           <button
@@ -42,30 +42,25 @@ export default function LoginPage() {
           </button>
         </div>
 
-        <div className="flex justify-center mb-6">
-          <ScallopedBadge>
-            <p className="font-display text-3xl font-bold text-gold leading-tight">PARTIU<br />ORLANDO</p>
-            <p className="font-ticket text-cream text-lg mt-1">
-              Gustavo | Philipe
-            </p>
-            <p className="font-ticket text-cream/60 text-[10px] tracking-widest mt-1">A FAMILY ADVENTURE · EST. 2026</p>
-          </ScallopedBadge>
-        </div>
+        <div className="mb-8"><Crest tagline="A FAMILY ADVENTURE · EST. 2026" /></div>
 
-        <TicketCard label={t.login.title} accent="gold">
-          <form onSubmit={handleSubmit} className="space-y-4">
+        <div className={CARD_CLASS}>
+          <p className="font-ticket text-[10px] uppercase tracking-widest text-navy/70 px-4 py-2 border-b border-dashed border-navy/20">
+            {t.login.title}
+          </p>
+          <form onSubmit={handleSubmit} className="p-4 space-y-4">
             <div>
-              <label className="block font-ticket text-xs uppercase tracking-wide text-navy/60 mb-1">{t.login.email}</label>
-              <input
+              <label htmlFor="login-email" className={FIELD_LABEL_CLASS}>{t.login.email}</label>
+              <input id="login-email"
                 type="email" value={email} onChange={e => setEmail(e.target.value)} required autoComplete="email"
-                className="w-full border border-navy/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold"
+                className={INPUT_CLASS}
               />
             </div>
             <div>
-              <label className="block font-ticket text-xs uppercase tracking-wide text-navy/60 mb-1">{t.login.password}</label>
-              <input
+              <label htmlFor="login-password" className={FIELD_LABEL_CLASS}>{t.login.password}</label>
+              <input id="login-password"
                 type="password" value={password} onChange={e => setPassword(e.target.value)} required autoComplete="current-password"
-                className="w-full border border-navy/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold"
+                className={INPUT_CLASS}
               />
             </div>
             {error && <p className="text-red-700 text-sm font-medium">{error}</p>}
@@ -73,7 +68,7 @@ export default function LoginPage() {
               {loading ? '...' : t.login.submit}
             </BrandButton>
           </form>
-        </TicketCard>
+        </div>
       </div>
     </div>
   )
