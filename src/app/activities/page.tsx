@@ -4,6 +4,7 @@ import { useAuth } from '@/lib/auth-context'
 import { useI18n } from '@/lib/i18n/context'
 import { supabase } from '@/lib/supabase'
 import { ActivityCard } from '@/components/ActivityCard'
+import { PageHeader } from '@/components/brand/PageHeader'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
 import type { ActivityWithSignups } from '@/types/database'
 
@@ -47,7 +48,7 @@ function ActivitiesPage() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold font-display text-navy mb-6">{t.activities.title}</h1>
+      <PageHeader eyebrow={t.activities.eyebrow} title={t.activities.title} />
       {activities.length === 0 ? (
         <p className="text-navy/50">{t.activities.no_activities}</p>
       ) : (

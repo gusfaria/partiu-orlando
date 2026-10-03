@@ -1,6 +1,10 @@
 'use client'
 import { useI18n } from '@/lib/i18n/context'
+import { activityMeta } from '@/lib/ticket-date'
 import { AvatarCircle } from './AvatarCircle'
+import { BrandButton } from './brand/BrandButton'
+import { TicketBand } from './brand/TicketBand'
+import { CARD_CLASS, DIVIDER_CLASS, META_LABEL_CLASS } from './brand/styles'
 import type { ActivityWithSignups } from '@/types/database'
 
 type Props = {
@@ -11,116 +15,71 @@ type Props = {
   onPlusGuests: (count: number) => void
 }
 
+const STEP_BTN = 'grid place-items-center w-6 h-6 rounded-full bg-white border border-navy/15 font-bold text-navy/70 hover:bg-navy/5 disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold'
+
 export function ActivityCard({ activity, isSignedUp, myPlusGuests, onToggle, onPlusGuests }: Props) {
   const { t, lang } = useI18n()
-
-  function fmtDate(dateStr: string | null, timeStr: string | null) {
-    if (!dateStr) return null
-    const date = new Date(dateStr + 'T00:00:00').toLocaleDateString(
-      lang === 'pt' ? 'pt-BR' : 'en-US',
-      { weekday: 'long', day: 'numeric', month: 'long' }
-    )
-    const time = timeStr ? ` • ${timeStr.slice(0, 5)}` : ''
-    return date + time
-  }
-
-  const dateLabel = fmtDate(activity.activity_date, activity.activity_time)
+  const locale = lang === 'pt' ? 'pt-BR' : 'en-US'
+  const meta = activityMeta(activity.activity_time, activity.cost_per_person)
   const totalHeadcount = activity.activity_signups.reduce((sum, s) => sum + 1 + s.plus_guests, 0)
 
   return (
-    <div className="bg-white rounded-2xl border border-navy/10 shadow-[0_4px_0_rgba(26,37,54,0.08)] p-5">
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <h3 className="font-bold font-display text-navy text-lg leading-snug">{activity.title}</h3>
-          {dateLabel && (
-            <p className="text-sm text-navy/50 mt-0.5 capitalize">{dateLabel}</p>
-          )}
-        </div>
-        <button
-          onClick={onToggle}
-          className={`shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
-            isSignedUp
-              ? 'bg-navy/5 text-navy/70 hover:bg-navy/10'
-              : 'bg-gold text-navy hover:brightness-105'
-          }`}
-        >
-          {isSignedUp ? t.activities.unsign : t.activities.signup}
-        </button>
-      </div>
+    <article className={CARD_CLASS}>
+      <TicketBand date={activity.activity_date} locale={locale} meta={meta} />
 
-      {activity.description && (
-        <p className="text-navy/70 text-sm mt-3 leading-relaxed">{activity.description}</p>
-      )}
-
-      {activity.cost_per_person != null && (
-        <p className="text-sm mt-3">
-          <span className="font-medium text-navy/80">{t.activities.cost}: </span>
-          <span className="text-navy/70">
-            $ {Number(activity.cost_per_person).toFixed(2)}
-          </span>
-          {activity.cost_notes && (
-            <span className="text-navy/50"> — {activity.cost_notes}</span>
-          )}
-        </p>
-      )}
-
-      {activity.ticket_url && (
-        <a
-          href={activity.ticket_url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block mt-3 text-sm text-navy underline decoration-gold decoration-2 underline-offset-2 font-medium"
-        >
-          {t.activities.buy_tickets} →
-        </a>
-      )}
-
-      {isSignedUp && (
-        <div className="mt-4 flex items-center gap-3 bg-gold/10 border border-gold/30 rounded-xl px-4 py-2.5 w-fit">
-          <span className="text-sm text-navy/80">+ {t.activities.plus_guests}:</span>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => onPlusGuests(Math.max(0, myPlusGuests - 1))}
-              disabled={myPlusGuests === 0}
-              className="w-7 h-7 rounded-full bg-white border border-navy/15 text-navy/70 font-bold disabled:opacity-40 hover:bg-navy/5"
-            >
-              −
-            </button>
-            <span className="w-5 text-center text-sm font-semibold text-navy">{myPlusGuests}</span>
-            <button
-              onClick={() => onPlusGuests(myPlusGuests + 1)}
-              className="w-7 h-7 rounded-full bg-white border border-navy/15 text-navy/70 font-bold hover:bg-navy/5"
-            >
-              +
-            </button>
-          </div>
-        </div>
-      )}
-
-      {activity.activity_signups.length > 0 && (
-        <div className="mt-4 pt-4 border-t border-navy/10">
-          <p className="text-xs text-navy/50 mb-2">
-            {t.activities.attendees} ({totalHeadcount} {t.activities.total})
+      <div className="px-4 pt-3 pb-4">
+        <h3 className="font-display text-lg font-bold leading-snug text-navy">{activity.title}</h3>
+        {activity.description && (
+          <p className="mt-1.5 text-sm leading-relaxed text-navy/70">{activity.description}</p>
+        )}
+        {activity.cost_notes && (
+          <p className="mt-2 text-xs text-navy/70">
+            <span className="font-medium">{t.activities.cost}:</span> {activity.cost_notes}
           </p>
-          <div className="flex flex-wrap gap-1.5">
-            {activity.activity_signups.map(s => (
-              <div key={s.id} className="relative">
-                <AvatarCircle
-                  name={s.profiles.name}
-                  color={s.profiles.avatar_color}
-                  avatarUrl={s.profiles.avatar_url}
-                  size="sm"
-                />
-                {s.plus_guests > 0 && (
-                  <span className="absolute -top-1.5 -right-1.5 bg-gold text-navy text-[10px] font-bold rounded-full px-1 min-w-[16px] h-4 flex items-center justify-center leading-none">
-                    +{s.plus_guests}
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
+        )}
+
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+          <BrandButton variant={isSignedUp ? 'secondary' : 'primary'} onClick={onToggle}>
+            {isSignedUp ? t.activities.unsign : t.activities.signup}
+          </BrandButton>
+          {activity.ticket_url && (
+            <a href={activity.ticket_url} target="_blank" rel="noopener noreferrer"
+              className="font-ticket text-[11px] uppercase tracking-wider text-navy underline decoration-gold decoration-2 underline-offset-4">
+              {t.activities.buy_tickets} →
+            </a>
+          )}
         </div>
-      )}
-    </div>
+
+        {isSignedUp && (
+          <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-dashed border-gold bg-gold/10 px-3 py-1 text-sm text-navy">
+            <span>+ {t.activities.plus_guests}</span>
+            <button type="button" aria-label="−" className={STEP_BTN}
+              onClick={() => onPlusGuests(Math.max(0, myPlusGuests - 1))} disabled={myPlusGuests === 0}>−</button>
+            <span className="w-4 text-center font-semibold">{myPlusGuests}</span>
+            <button type="button" aria-label="+" className={STEP_BTN}
+              onClick={() => onPlusGuests(myPlusGuests + 1)}>+</button>
+          </div>
+        )}
+
+        {activity.activity_signups.length > 0 && (
+          <div className={`mt-3 pt-3 flex items-center gap-2 ${DIVIDER_CLASS}`}>
+            <div className="flex -space-x-1.5">
+              {activity.activity_signups.map(s => (
+                <div key={s.id} className="relative rounded-full ring-2 ring-white">
+                  <AvatarCircle name={s.profiles.name} color={s.profiles.avatar_color}
+                    avatarUrl={s.profiles.avatar_url} size="sm" />
+                  {s.plus_guests > 0 && (
+                    <span className="absolute -top-1.5 -right-1.5 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-gold px-1 text-[10px] font-bold leading-none text-navy">
+                      +{s.plus_guests}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+            <span className={META_LABEL_CLASS}>{t.activities.attendees} · {totalHeadcount}</span>
+          </div>
+        )}
+      </div>
+    </article>
   )
 }
