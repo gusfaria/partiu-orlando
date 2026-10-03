@@ -7,12 +7,11 @@ import { supabase } from '@/lib/supabase'
 import { listSitePhotos, publicUrl } from '@/lib/photos'
 import { checklistItems } from '@/lib/checklist'
 import { hasLoggedArrival } from '@/lib/arrival-event'
-import { Countdown } from '@/components/Countdown'
 import { AvatarCircle } from '@/components/AvatarCircle'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
-import { ScallopedBadge } from '@/components/brand/ScallopedBadge'
-import { TicketCard } from '@/components/brand/TicketCard'
-import { SunburstBg } from '@/components/brand/SunburstBg'
+import { Crest } from '@/components/brand/Crest'
+import { NavyCard } from '@/components/brand/NavyCard'
+import { BoardingPass } from '@/components/brand/BoardingPass'
 import type { Profile, SitePhoto, ArrivalEventWithPeople } from '@/types/database'
 
 function HomePage() {
@@ -36,61 +35,55 @@ function HomePage() {
 
   return (
     <>
-      {/* full-bleed navy backdrop with cut-paper motifs, home route only */}
+      {/* full-bleed navy backdrop with a soft top glow, home route only */}
       <div className="fixed inset-0 -z-10 bg-navy overflow-hidden">
         {hero && (
           <img src={publicUrl('photos', hero.storage_path)} alt=""
             className="absolute inset-0 w-full h-full object-cover opacity-15" />
         )}
-        <SunburstBg />
+        <div aria-hidden="true"
+          className="absolute inset-0 bg-[radial-gradient(120%_60%_at_50%_0%,#2a3b56_0%,transparent_60%)]" />
       </div>
 
-      <div className="max-w-xl mx-auto space-y-4">
-      <div className="text-center pt-2">
-        <div className="flex justify-center mb-2">
-          <ScallopedBadge>
-            <p className="font-display text-2xl font-bold text-gold leading-tight">PARTIU ORLANDO</p>
-              <p className="font-ticket text-cream text-base mt-1">
-                Gustavo | Philipe
-              </p>
-          </ScallopedBadge>
-        </div>
-        <Countdown />
-      </div>
+      <div className="max-w-xl mx-auto space-y-4 pt-2">
+        <Crest />
+        <div className="pt-2"><BoardingPass /></div>
 
-      <TicketCard label={t.dashboard.facts_title} accent="teal">
-        <p className="text-sm text-navy/80">🗓️ {t.dashboard.facts_dates}</p>
-        <p className="text-sm text-navy/80 mt-1">📍 {t.dashboard.facts_address}</p>
-        <Link href="/house" className="inline-block font-display text-sm text-navy underline decoration-gold decoration-2 underline-offset-2 font-semibold mt-2">
-          {t.dashboard.facts_house_link}
-        </Link>
-      </TicketCard>
+        <NavyCard label={t.dashboard.facts_title}>
+          <p>🗓️ {t.dashboard.facts_dates}</p>
+          <p className="mt-1">📍 {t.dashboard.facts_address}</p>
+          <Link href="/house" className="inline-block mt-2 font-display text-sm font-semibold text-gold hover:underline">
+            {t.dashboard.facts_house_link}
+          </Link>
+        </NavyCard>
 
-      {todo.length > 0 && (
-        <TicketCard label={t.dashboard.checklist_title} accent="gold">
-          <div className="space-y-1.5">
-            {todo.map(item => (
-              <Link key={item.key} href={item.href}
-                className="block text-sm text-navy/80 hover:underline hover:decoration-gold">
-                {checklistLabels[item.key]}
-              </Link>
-            ))}
-          </div>
-        </TicketCard>
-      )}
+        {todo.length > 0 && (
+          <NavyCard label={t.dashboard.checklist_title}>
+            <div className="space-y-1.5">
+              {todo.map(item => (
+                <Link key={item.key} href={item.href} className="flex items-center gap-2 hover:text-cream">
+                  <span aria-hidden="true" className="w-3.5 h-3.5 rounded border-[1.5px] border-gold shrink-0" />
+                  {checklistLabels[item.key]}
+                </Link>
+              ))}
+            </div>
+          </NavyCard>
+        )}
 
-      {missing.length > 0 && (
-        <TicketCard label={t.home.arrivals_prompt} accent="coral">
-          <div className="flex flex-wrap gap-3">
-            {missing.map(p => (
-              <div key={p.id} className="flex items-center gap-2">
-                <AvatarCircle name={p.name} color={p.avatar_color} avatarUrl={p.avatar_url} size="sm" />
-                <span className="text-sm text-navy/80">{p.name}</span>
-              </div>
-            ))}
-          </div>
-        </TicketCard>
-      )}
+        {missing.length > 0 && (
+          <NavyCard label={t.home.arrivals_prompt}>
+            <div className="flex flex-wrap gap-3">
+              {missing.map(p => (
+                <div key={p.id} className="flex items-center gap-2">
+                  <span className="rounded-full ring-[1.5px] ring-gold">
+                    <AvatarCircle name={p.name} color={p.avatar_color} avatarUrl={p.avatar_url} size="sm" />
+                  </span>
+                  <span>{p.name}</span>
+                </div>
+              ))}
+            </div>
+          </NavyCard>
+        )}
       </div>
     </>
   )
