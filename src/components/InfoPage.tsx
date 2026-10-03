@@ -5,6 +5,7 @@ import { useI18n } from '@/lib/i18n/context'
 import { ProtectedRoute } from './ProtectedRoute'
 import { MarkdownRenderer } from './MarkdownRenderer'
 import { PhotoGallery } from './PhotoGallery'
+import { PageHeader } from './brand/PageHeader'
 import type { InfoPage as InfoPageType } from '@/types/database'
 
 type Props = { slug: string; fallbackTitle: string; children?: React.ReactNode }
@@ -23,7 +24,7 @@ function InfoPageContent({ slug, fallbackTitle, children }: Props) {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold font-display text-navy mb-6">{page?.title ?? fallbackTitle}</h1>
+      <PageHeader eyebrow={slug === 'cars' ? t.cars.eyebrow : undefined} title={page?.title ?? fallbackTitle} />
       {slug === 'cars' && <PhotoGallery section={slug} />}
       {page?.content
         ? <MarkdownRenderer content={page.content} />
