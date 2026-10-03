@@ -26,9 +26,12 @@ export function SplitFlap({ codes, intervalMs = 3200, tone = 'dark' }: Props) {
       idx = (idx + 1) % codes.length
       const target = codes[idx]
       const start = Date.now()
+      let current = codes[(idx - 1 + codes.length) % codes.length]
       clearInterval(flip)
       flip = setInterval(() => {
-        setLetters(prev => advanceTowards(prev, target, Date.now() - start))
+        current = advanceTowards(current, target, Date.now() - start)
+        setLetters(current)
+        if (current === target) clearInterval(flip)
       }, FLAP_TICK_MS)
     }, intervalMs)
     return () => { clearInterval(cycle); clearInterval(flip) }

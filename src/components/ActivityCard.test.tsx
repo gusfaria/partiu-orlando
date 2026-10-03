@@ -45,4 +45,10 @@ describe('ActivityCard', () => {
     expect(screen.getByRole('button', { name: 'Não vou mais' })).toBeInTheDocument()
     expect(screen.getByText(/acompanhantes/)).toBeInTheDocument()
   })
+
+  it('cost notes render on their own, not under the per-person cost label', () => {
+    renderCard(activity({ cost_notes: 'inclui estacionamento' }))
+    expect(screen.getByText('inclui estacionamento').textContent).toBe('inclui estacionamento')
+    expect(screen.queryByText(/Custo por pessoa/)).not.toBeInTheDocument()
+  })
 })

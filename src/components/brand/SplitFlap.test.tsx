@@ -43,4 +43,10 @@ describe('SplitFlap', () => {
     unmount()
     expect(vi.getTimerCount()).toBe(0)
   })
+
+  it('stops the per-letter flip timer once the letters settle', () => {
+    render(<SplitFlap codes={['GIG', 'JFK']} />)
+    act(() => { vi.advanceTimersByTime(3200 + 2000) })
+    expect(vi.getTimerCount()).toBe(1) // only the 3.2s cycle remains
+  })
 })

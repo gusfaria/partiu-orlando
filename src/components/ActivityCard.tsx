@@ -33,9 +33,7 @@ export function ActivityCard({ activity, isSignedUp, myPlusGuests, onToggle, onP
           <p className="mt-1.5 text-sm leading-relaxed text-navy/70">{activity.description}</p>
         )}
         {activity.cost_notes && (
-          <p className="mt-2 text-xs text-navy/70">
-            <span className="font-medium">{t.activities.cost}:</span> {activity.cost_notes}
-          </p>
+          <p className="mt-2 text-xs text-navy/70">{activity.cost_notes}</p>
         )}
 
         <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
