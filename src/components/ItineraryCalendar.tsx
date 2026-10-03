@@ -5,6 +5,8 @@ import { useI18n } from '@/lib/i18n/context'
 import { ProtectedRoute } from './ProtectedRoute'
 import { ItineraryPill } from './ItineraryPill'
 import { ItineraryDayDetail } from './ItineraryDayDetail'
+import { PageHeader } from './brand/PageHeader'
+import { FilterChip } from './brand/FilterChip'
 import {
   buildCalendarItems, filterItems, itemsForDay, buildMonthGrid, tripDates,
   TRIP_YEAR, TRIP_MONTH, TRIP_START, TRIP_END, type FilterType,
@@ -13,14 +15,13 @@ import type { ArrivalEventWithPeople, Activity, CalendarMarker } from '@/types/d
 
 const FILTERS: FilterType[] = ['all', 'arrival', 'departure', 'activity', 'marker']
 
-// Color-code each filter to match the calendar items it shows.
-// Literal class names so Tailwind can see them (no dynamic construction).
-const FILTER_STYLE: Record<FilterType, { active: string; idle: string }> = {
-  all:       { active: 'bg-navy text-cream',  idle: 'bg-navy/5 text-navy/70 hover:bg-navy/10' },
-  arrival:   { active: 'bg-teal text-white',  idle: 'bg-teal/15 text-navy hover:bg-teal/25' },
-  departure: { active: 'bg-coral text-white', idle: 'bg-coral/15 text-navy hover:bg-coral/25' },
-  activity:  { active: 'bg-gold text-navy',   idle: 'bg-gold/15 text-navy hover:bg-gold/25' },
-  marker:    { active: 'bg-pink text-navy',   idle: 'bg-pink/20 text-navy hover:bg-pink/30' },
+// Each filter keeps its calendar color as a dot. Literal class names so Tailwind can see them.
+const FILTER_DOT: Record<FilterType, string | undefined> = {
+  all: undefined,
+  arrival: 'bg-teal',
+  departure: 'bg-coral',
+  activity: 'bg-gold',
+  marker: 'bg-pink',
 }
 
 function ItineraryContent() {
@@ -77,16 +78,12 @@ function ItineraryContent() {
 
   return (
     <div className="max-w-6xl mx-auto">
-      <h1 className="text-2xl font-display font-bold text-navy mb-4">{t.itinerary.title}</h1>
+      <PageHeader eyebrow={t.itinerary.eyebrow} title={t.itinerary.title} />
 
       <div className="flex flex-wrap gap-2 mb-4">
         {FILTERS.map(f => (
-          <button key={f} onClick={() => { setFilter(f); setSelected(null) }}
-            className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-              filter === f ? FILTER_STYLE[f].active : FILTER_STYLE[f].idle
-            }`}>
-            {filterLabel[f]}
-          </button>
+          <FilterChip key={f} label={filterLabel[f]} active={filter === f} dotClass={FILTER_DOT[f]}
+            onClick={() => { setFilter(f); setSelected(null) }} />
         ))}
       </div>
 
