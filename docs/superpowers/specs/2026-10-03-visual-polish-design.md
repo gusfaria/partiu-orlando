@@ -75,7 +75,7 @@ White, rounded-2xl, navy/8 border, `0 4px 0` navy/6 shadow, with internal divide
 - **Not changed here:** how the description renders mixed PT/EN text (see §7).
 
 ### 4.4 Chegadas e Saídas `/arrivals` — `ArrivalEventCard`, `ArrivalEventsSection`
-- Card top: a mono label `<transport emoji> <transportation> · <description>`, then the avatar stack and the names in Fredoka.
+- Card top: a mono label `<transport emoji> <transportation>`, then the avatar stack and the names in Fredoka, then the free-text description as a normal `text-sm` line. It is not in the mono label, because descriptions can be long.
 - `TicketLegs`: ↓ Chegada (date "09 out" + mono time) | ↑ Saída. A missing side shows "—".
 - Footer, dashed-divided and right-aligned: `quiet` Editar and `danger-quiet` Excluir.
 - The add/edit form uses `PageHeader`, the primary button, and inputs restyled per §5.
