@@ -14,7 +14,13 @@
     "subtitle": "Gustavo & Philipe's Birthday",
     "countdown_prefix": "",
     "countdown_label": "days until the trip",
-    "arrivals_prompt": "Haven't filled in their arrival yet:"
+    "arrivals_prompt": "Haven't filled in their arrival yet:",
+    "boarding_pass": "Boarding pass",
+    "outbound": "Out",
+    "inbound": "Back",
+    "outbound_date": "Oct 9",
+    "inbound_date": "Oct 18",
+    "destination_city": "Orlando"
   },
   "login": {
     "title": "Sign In",
@@ -42,7 +48,8 @@
     "departure_time": "Departure time",
     "arrival": "Arrival",
     "departure": "Departure",
-    "empty": "No arrivals or departures logged yet."
+    "empty": "No arrivals or departures logged yet.",
+    "eyebrow": "Who lands when"
   },
   "activities": {
     "title": "Activities",
@@ -53,7 +60,8 @@
     "total": "total",
     "buy_tickets": "Buy tickets",
     "no_activities": "No activities added yet.",
-    "plus_guests": "guests"
+    "plus_guests": "guests",
+    "eyebrow": "Parks & outings"
   },
   "profile": {
     "title": "My Profile",
@@ -64,7 +72,10 @@
     "color": "Avatar color",
     "save": "Save",
     "saved": "Saved!",
-    "invalid_file": "Invalid file — use an image up to 20 MB"
+    "invalid_file": "Invalid file — use an image up to 20 MB",
+    "eyebrow": "Passport",
+    "passport_title": "Passport · Partiu Orlando",
+    "traveler": "Traveler"
   },
   "dashboard": {
     "facts_title": "Trip info",
@@ -110,7 +121,8 @@
     "create_marker": "New marker",
     "marker_label": "Label",
     "marker_emoji": "Emoji",
-    "marker_full_day": "Full day"
+    "marker_full_day": "Full day",
+    "eyebrow": "Backstage"
   },
   "cars": {
     "section_title": "Guest Cars",
@@ -128,7 +140,8 @@
     "seats": "Seats",
     "photo": "Photo (optional)",
     "empty": "No cars added yet.",
-    "added_by": "Added by"
+    "added_by": "Added by",
+    "eyebrow": "The family fleet"
   },
   "common": {
     "loading": "Loading...",
@@ -152,6 +165,10 @@
     "cost": "Cost per person",
     "buy_tickets": "Buy tickets",
     "empty_day": "Nothing on this day",
-    "empty": "Nothing scheduled yet."
+    "empty": "Nothing scheduled yet.",
+    "eyebrow": "Oct 2026 · 9 → 18"
+  },
+  "house": {
+    "eyebrow": "Our home in Kissimmee"
   }
 }

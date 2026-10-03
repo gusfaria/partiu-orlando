@@ -14,7 +14,13 @@
     "subtitle": "Aniversário do Gustavo & Philipe",
     "countdown_prefix": "faltam",
     "countdown_label": "dias para a viagem",
-    "arrivals_prompt": "Ainda não preencheram a chegada:"
+    "arrivals_prompt": "Ainda não preencheram a chegada:",
+    "boarding_pass": "Cartão de embarque",
+    "outbound": "Ida",
+    "inbound": "Volta",
+    "outbound_date": "9 out",
+    "inbound_date": "18 out",
+    "destination_city": "Orlando"
   },
   "login": {
     "title": "Entrar",
@@ -42,7 +48,8 @@
     "departure_time": "Horário de saída",
     "arrival": "Chegada",
     "departure": "Saída",
-    "empty": "Nenhuma chegada ou saída registrada ainda."
+    "empty": "Nenhuma chegada ou saída registrada ainda.",
+    "eyebrow": "Quem chega quando"
   },
   "activities": {
     "title": "Atividades",
@@ -53,7 +60,8 @@
     "total": "total",
     "buy_tickets": "Comprar ingressos",
     "no_activities": "Nenhuma atividade cadastrada ainda.",
-    "plus_guests": "acompanhantes"
+    "plus_guests": "acompanhantes",
+    "eyebrow": "Parques & passeios"
   },
   "profile": {
     "title": "Meu Perfil",
@@ -64,7 +72,10 @@
     "color": "Cor do avatar",
     "save": "Salvar",
     "saved": "Salvo!",
-    "invalid_file": "Arquivo inválido — use uma imagem de até 20 MB"
+    "invalid_file": "Arquivo inválido — use uma imagem de até 20 MB",
+    "eyebrow": "Passaporte",
+    "passport_title": "Passaporte · Partiu Orlando",
+    "traveler": "Viajante"
   },
   "dashboard": {
     "facts_title": "Informações da viagem",
@@ -110,7 +121,8 @@
     "create_marker": "Novo marco",
     "marker_label": "Descrição",
     "marker_emoji": "Emoji",
-    "marker_full_day": "Dia inteiro"
+    "marker_full_day": "Dia inteiro",
+    "eyebrow": "Bastidores"
   },
   "cars": {
     "section_title": "Carros dos Convidados",
@@ -128,7 +140,8 @@
     "seats": "Assentos",
     "photo": "Foto (opcional)",
     "empty": "Nenhum carro cadastrado ainda.",
-    "added_by": "Adicionado por"
+    "added_by": "Adicionado por",
+    "eyebrow": "Frota da família"
   },
   "common": {
     "loading": "Carregando...",
@@ -152,6 +165,10 @@
     "cost": "Custo por pessoa",
     "buy_tickets": "Comprar ingressos",
     "empty_day": "Nada neste dia",
-    "empty": "Nada programado ainda."
+    "empty": "Nada programado ainda.",
+    "eyebrow": "Out 2026 · 9 → 18"
+  },
+  "house": {
+    "eyebrow": "Nosso lar em Kissimmee"
   }
 }
