@@ -1,7 +1,11 @@
 'use client'
 import { useI18n } from '@/lib/i18n/context'
 import { transportEmoji } from '@/lib/arrival-event'
+import { shortDate } from '@/lib/ticket-date'
 import { AvatarCircle } from './AvatarCircle'
+import { BrandButton } from './brand/BrandButton'
+import { TicketLegs } from './brand/TicketLegs'
+import { CARD_CLASS, DIVIDER_CLASS, META_LABEL_CLASS } from './brand/styles'
 import type { ArrivalEventWithPeople } from '@/types/database'
 
 type Props = {
@@ -12,54 +16,44 @@ type Props = {
 
 export function ArrivalEventCard({ event, onEdit, onDelete }: Props) {
   const { t, lang } = useI18n()
-
-  function fmt(dateStr: string | null, timeStr: string | null): string | null {
-    if (!dateStr) return null
-    const date = new Date(dateStr + 'T00:00:00').toLocaleDateString(
-      lang === 'pt' ? 'pt-BR' : 'en-US',
-      { day: '2-digit', month: '2-digit', year: 'numeric' }
-    )
-    return timeStr ? `${date} ${timeStr.slice(0, 5)}` : date
-  }
-
+  const locale = lang === 'pt' ? 'pt-BR' : 'en-US'
   const people = event.arrival_event_people.filter(p => p.profiles != null)
-  const arrival = fmt(event.arrival_date, event.arrival_time)
-  const departure = fmt(event.departure_date, event.departure_time)
 
   return (
-    <div className="bg-white rounded-2xl border border-navy/10 shadow-[0_4px_0_rgba(26,37,54,0.08)] p-4">
-      <div className="flex items-center gap-2 mb-2 flex-wrap">
-        {people.map(p => (
-          <AvatarCircle key={p.id} name={p.profiles!.name} color={p.profiles!.avatar_color}
-            avatarUrl={p.profiles!.avatar_url} size="sm" />
-        ))}
-        <span className="text-sm font-semibold font-display text-navy">
-          {people.map(p => p.profiles!.name).join(', ')}
-        </span>
-      </div>
-
-      <p className="text-sm text-navy/80">{event.description}</p>
-      <p className="text-xs text-navy/50 mt-0.5">{transportEmoji(event.transportation)} {event.transportation}</p>
-
-      <div className="mt-2 space-y-0.5">
-        {arrival && (
-          <p className="text-sm text-navy/70">↓ {t.arrivals.arrival}: {arrival}</p>
+    <article className={CARD_CLASS}>
+      <div className="px-4 py-3">
+        {event.transportation && (
+          <p className={META_LABEL_CLASS}>{transportEmoji(event.transportation)} {event.transportation}</p>
         )}
-        {departure && (
-          <p className="text-sm text-navy/70">↑ {t.arrivals.departure}: {departure}</p>
-        )}
+        <div className="mt-1.5 flex flex-wrap items-center gap-2">
+          <div className="flex -space-x-1.5">
+            {people.map(p => (
+              <span key={p.id} className="rounded-full ring-2 ring-white">
+                <AvatarCircle name={p.profiles!.name} color={p.profiles!.avatar_color}
+                  avatarUrl={p.profiles!.avatar_url} size="sm" />
+              </span>
+            ))}
+          </div>
+          <span className="min-w-0 font-display font-semibold text-navy">
+            {people.map(p => p.profiles!.name).join(', ')}
+          </span>
+        </div>
+        {event.description && <p className="mt-1.5 text-sm text-navy/80 break-words">{event.description}</p>}
       </div>
 
-      <div className="flex justify-end gap-2 mt-3 pt-3 border-t border-navy/10">
-        <button onClick={onEdit}
-          className="px-3 py-1.5 border border-navy/15 rounded-lg text-sm text-navy/70 hover:bg-navy/5">
-          {t.arrivals.edit}
-        </button>
-        <button onClick={onDelete}
-          className="px-3 py-1.5 border border-red-200 rounded-lg text-sm text-red-600 hover:bg-red-50">
-          {t.arrivals.delete}
-        </button>
+      <TicketLegs legs={[
+        { label: `↓ ${t.arrivals.arrival}`,
+          value: event.arrival_date ? shortDate(event.arrival_date, locale) : null,
+          sub: event.arrival_time?.slice(0, 5) ?? null },
+        { label: `↑ ${t.arrivals.departure}`,
+          value: event.departure_date ? shortDate(event.departure_date, locale) : null,
+          sub: event.departure_time?.slice(0, 5) ?? null },
+      ]} />
+
+      <div className={`flex justify-end gap-4 px-4 py-2 ${DIVIDER_CLASS}`}>
+        <BrandButton variant="quiet" onClick={onEdit}>{t.arrivals.edit}</BrandButton>
+        <BrandButton variant="danger-quiet" onClick={onDelete}>{t.arrivals.delete}</BrandButton>
       </div>
-    </div>
+    </article>
   )
 }
