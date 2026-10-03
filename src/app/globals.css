@@ -19,3 +19,19 @@ body {
   color: var(--color-navy);
   font-family: var(--font-inter), system-ui, sans-serif;
 }
+
+/* Markdown pages (A Casa, Carros): gold bullets + short gold bar under headings */
+.prose-brand {
+  --tw-prose-bullets: var(--color-gold);
+  --tw-prose-counters: var(--color-navy);
+  --tw-prose-headings: var(--color-navy);
+}
+.prose-brand :where(h2, h3):not(:where(.not-prose *))::after {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  margin-top: 0.35rem;
+  border-radius: 9999px;
+  background: var(--color-gold);
+}
