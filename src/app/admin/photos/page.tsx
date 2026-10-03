@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useI18n } from '@/lib/i18n/context'
 import { supabase } from '@/lib/supabase'
 import { uploadSitePhoto, listSitePhotos, deleteSitePhoto, publicUrl } from '@/lib/photos'
+import { BrandButton } from '@/components/brand/BrandButton'
 import type { SitePhoto } from '@/types/database'
 
 const SECTIONS = ['house', 'cars', 'hero'] as const
@@ -74,10 +75,9 @@ export default function AdminPhotosPage() {
         </p>
       )}
 
-      <button onClick={() => fileRef.current?.click()} disabled={busy}
-        className="px-4 py-2 bg-gold text-navy rounded-lg text-sm font-medium hover:brightness-105 disabled:opacity-50">
+      <BrandButton onClick={() => fileRef.current?.click()} disabled={busy}>
         {busy ? t.profile.uploading : `+ ${t.admin.photos_upload}`}
-      </button>
+      </BrandButton>
       <input ref={fileRef} type="file" accept="image/*" multiple onChange={onFiles} className="hidden" />
       {error && <p className="text-red-500 text-sm">{error}</p>}
 

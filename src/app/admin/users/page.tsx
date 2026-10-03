@@ -4,6 +4,8 @@ import { useI18n } from '@/lib/i18n/context'
 import { useAuth } from '@/lib/auth-context'
 import { supabase } from '@/lib/supabase'
 import { AvatarCircle } from '@/components/AvatarCircle'
+import { BrandButton } from '@/components/brand/BrandButton'
+import { INPUT_CLASS } from '@/components/brand/styles'
 import type { Profile } from '@/types/database'
 
 const AVATAR_COLORS = ['#6366f1','#f59e0b','#10b981','#ef4444','#8b5cf6',
@@ -64,7 +66,7 @@ export default function AdminUsersPage() {
             <div className="space-y-3">
               <input value={editName} onChange={e => setEditName(e.target.value)}
                 placeholder={t.admin.name}
-                className="w-full border border-navy/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
+                className={INPUT_CLASS} />
               <div className="flex flex-wrap gap-2">
                 {AVATAR_COLORS.map(c => (
                   <button key={c} onClick={() => setEditColor(c)}
@@ -73,14 +75,12 @@ export default function AdminUsersPage() {
                 ))}
               </div>
               <div className="flex gap-2">
-                <button onClick={() => saveEdit(p.id)} disabled={saving}
-                  className="px-4 py-2 bg-gold text-navy rounded-lg text-sm font-medium hover:brightness-105 disabled:opacity-50">
+                <BrandButton onClick={() => saveEdit(p.id)} disabled={saving}>
                   {saving ? '...' : t.admin.save}
-                </button>
-                <button onClick={() => setEditingId(null)}
-                  className="px-4 py-2 bg-navy/5 text-navy/70 rounded-lg text-sm hover:bg-navy/10">
+                </BrandButton>
+                <BrandButton variant="secondary" onClick={() => setEditingId(null)}>
                   {t.admin.cancel}
-                </button>
+                </BrandButton>
               </div>
             </div>
           ) : (
@@ -115,10 +115,9 @@ export default function AdminUsersPage() {
                     </label>
                   )
                 })()}
-                <button onClick={() => startEdit(p)}
-                  className="px-3 py-1.5 border border-navy/15 rounded-lg text-sm text-navy/70 hover:bg-navy/5">
+                <BrandButton variant="quiet" onClick={() => startEdit(p)}>
                   {t.admin.edit}
-                </button>
+                </BrandButton>
               </div>
             </div>
           )}

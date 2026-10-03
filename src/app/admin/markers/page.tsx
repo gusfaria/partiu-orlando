@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react'
 import { useI18n } from '@/lib/i18n/context'
 import { supabase } from '@/lib/supabase'
+import { BrandButton } from '@/components/brand/BrandButton'
+import { FIELD_LABEL_CLASS, INPUT_CLASS } from '@/components/brand/styles'
 import type { CalendarMarker } from '@/types/database'
 
 type MarkerForm = Omit<CalendarMarker, 'id' | 'created_at'>
@@ -57,10 +59,9 @@ export default function AdminMarkersPage() {
   return (
     <div className="space-y-4">
       {!form && (
-        <button onClick={startCreate}
-          className="px-4 py-2 bg-gold text-navy rounded-lg text-sm font-medium hover:brightness-105">
+        <BrandButton onClick={startCreate}>
           + {t.admin.create_marker}
-        </button>
+        </BrandButton>
       )}
 
       {form && (
@@ -68,14 +69,14 @@ export default function AdminMarkersPage() {
           <h3 className="font-semibold text-navy">{editingId ? t.admin.edit : t.admin.create_marker}</h3>
 
           <div>
-            <label className="block text-xs text-navy/50 mb-1">{t.admin.marker_label}</label>
+            <label className={FIELD_LABEL_CLASS}>{t.admin.marker_label}</label>
             <input type="text" value={form.label}
               onChange={e => setForm(f => ({ ...f!, label: e.target.value }))}
-              className="w-full border border-navy/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
+              className={INPUT_CLASS} />
           </div>
 
           <div>
-            <label className="block text-xs text-navy/50 mb-1">{t.admin.marker_emoji}</label>
+            <label className={FIELD_LABEL_CLASS}>{t.admin.marker_emoji}</label>
             <div className="flex items-center gap-2">
               <input type="text" value={form.emoji} maxLength={4}
                 onChange={e => setForm(f => ({ ...f!, emoji: e.target.value }))}
@@ -95,16 +96,16 @@ export default function AdminMarkersPage() {
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs text-navy/50 mb-1">{t.admin.activity_date}</label>
+              <label className={FIELD_LABEL_CLASS}>{t.admin.activity_date}</label>
               <input type="date" value={form.event_date}
                 onChange={e => setForm(f => ({ ...f!, event_date: e.target.value }))}
-                className="w-full border border-navy/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
+                className={INPUT_CLASS} />
             </div>
             <div>
-              <label className="block text-xs text-navy/50 mb-1">{t.admin.display_order}</label>
+              <label className={FIELD_LABEL_CLASS}>{t.admin.display_order}</label>
               <input type="number" value={form.display_order}
                 onChange={e => setForm(f => ({ ...f!, display_order: Number(e.target.value) || 0 }))}
-                className="w-full border border-navy/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
+                className={INPUT_CLASS} />
             </div>
           </div>
 
@@ -117,7 +118,7 @@ export default function AdminMarkersPage() {
             </label>
             {form.event_time !== null && (
               <div>
-                <label className="block text-xs text-navy/50 mb-1">{t.admin.activity_time}</label>
+                <label className={FIELD_LABEL_CLASS}>{t.admin.activity_time}</label>
                 <input type="time" value={form.event_time}
                   onChange={e => setForm(f => ({ ...f!, event_time: e.target.value || null }))}
                   className="border border-navy/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
@@ -126,14 +127,12 @@ export default function AdminMarkersPage() {
           </div>
 
           <div className="flex gap-2 pt-2">
-            <button onClick={save} disabled={saving || !form.label || !form.event_date}
-              className="px-4 py-2 bg-gold text-navy rounded-lg text-sm font-medium hover:brightness-105 disabled:opacity-50">
+            <BrandButton onClick={save} disabled={saving || !form.label || !form.event_date}>
               {saving ? '...' : t.admin.save}
-            </button>
-            <button onClick={() => { setForm(null); setEditingId(null) }}
-              className="px-4 py-2 bg-navy/5 text-navy/70 rounded-lg text-sm hover:bg-navy/10">
+            </BrandButton>
+            <BrandButton variant="secondary" onClick={() => { setForm(null); setEditingId(null) }}>
               {t.admin.cancel}
-            </button>
+            </BrandButton>
           </div>
         </div>
       )}
@@ -151,14 +150,12 @@ export default function AdminMarkersPage() {
             </div>
           </div>
           <div className="flex gap-2 shrink-0">
-            <button onClick={() => startEdit(m)}
-              className="px-3 py-1.5 border border-navy/15 rounded-lg text-sm text-navy/70 hover:bg-navy/5">
+            <BrandButton variant="quiet" onClick={() => startEdit(m)}>
               {t.admin.edit}
-            </button>
-            <button onClick={() => remove(m.id)}
-              className="px-3 py-1.5 border border-red-200 rounded-lg text-sm text-red-600 hover:bg-red-50">
+            </BrandButton>
+            <BrandButton variant="danger-quiet" onClick={() => remove(m.id)}>
               {t.admin.delete}
-            </button>
+            </BrandButton>
           </div>
         </div>
       ))}

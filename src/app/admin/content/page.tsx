@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useI18n } from '@/lib/i18n/context'
 import { supabase } from '@/lib/supabase'
 import { MarkdownRenderer } from '@/components/MarkdownRenderer'
+import { BrandButton } from '@/components/brand/BrandButton'
 import type { InfoPage } from '@/types/database'
 
 const SLUGS = ['cars'] as const
@@ -70,10 +71,9 @@ export default function AdminContentPage() {
       )}
 
       <div className="flex items-center gap-3">
-        <button onClick={saveContent} disabled={saving}
-          className="px-4 py-2 bg-gold text-navy rounded-lg text-sm font-medium hover:brightness-105 disabled:opacity-50">
+        <BrandButton onClick={saveContent} disabled={saving}>
           {saving ? '...' : t.admin.save}
-        </button>
+        </BrandButton>
         {saved && <span className="text-sm text-green-600">{t.common.saved}</span>}
       </div>
     </div>

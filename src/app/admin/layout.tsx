@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useI18n } from '@/lib/i18n/context'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
+import { PageHeader } from '@/components/brand/PageHeader'
 
 function AdminLayout({ children }: { children: React.ReactNode }) {
   const { t } = useI18n()
@@ -18,7 +19,7 @@ function AdminLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-display font-bold text-navy mb-4">{t.admin.title}</h1>
+      <PageHeader eyebrow={t.admin.eyebrow} title={t.admin.title} />
       <div className="flex gap-2 border-b border-navy/15 mb-6">
         {tabs.map(tab => (
           <Link key={tab.href} href={tab.href}

@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react'
 import { useI18n } from '@/lib/i18n/context'
 import { supabase } from '@/lib/supabase'
+import { BrandButton } from '@/components/brand/BrandButton'
+import { FIELD_LABEL_CLASS, INPUT_CLASS } from '@/components/brand/styles'
 import type { Activity } from '@/types/database'
 
 type ActivityForm = Omit<Activity, 'id' | 'created_at'>
@@ -56,10 +58,10 @@ export default function AdminActivitiesPage() {
   function textField(key: keyof ActivityForm, label: string, type = 'text') {
     return (
       <div key={key}>
-        <label className="block text-xs text-navy/50 mb-1">{label}</label>
+        <label className={FIELD_LABEL_CLASS}>{label}</label>
         <input type={type} value={String(form?.[key] ?? '')}
           onChange={e => setForm(f => ({ ...f!, [key]: e.target.value === '' ? null : e.target.value }))}
-          className="w-full border border-navy/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
+          className={INPUT_CLASS} />
       </div>
     )
   }
@@ -67,10 +69,9 @@ export default function AdminActivitiesPage() {
   return (
     <div className="space-y-4">
       {!form && (
-        <button onClick={startCreate}
-          className="px-4 py-2 bg-gold text-navy rounded-lg text-sm font-medium hover:brightness-105">
+        <BrandButton onClick={startCreate}>
           + {t.admin.create_activity}
-        </button>
+        </BrandButton>
       )}
 
       {form && (
@@ -78,7 +79,7 @@ export default function AdminActivitiesPage() {
           <h3 className="font-semibold text-navy">{editingId ? t.admin.edit : t.admin.create_activity}</h3>
           {textField('title', t.admin.activity_title)}
           <div>
-            <label className="block text-xs text-navy/50 mb-1">{t.admin.description}</label>
+            <label className={FIELD_LABEL_CLASS}>{t.admin.description}</label>
             <textarea value={form.description ?? ''} rows={3}
               onChange={e => setForm(f => ({ ...f!, description: e.target.value }))}
               className="w-full border border-navy/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold resize-none" />
@@ -90,23 +91,21 @@ export default function AdminActivitiesPage() {
           <div className="grid grid-cols-2 gap-3">
             {textField('cost_per_person', t.admin.cost_per_person, 'number')}
             <div>
-              <label className="block text-xs text-navy/50 mb-1">{t.admin.display_order}</label>
+              <label className={FIELD_LABEL_CLASS}>{t.admin.display_order}</label>
               <input type="number" value={form.display_order}
                 onChange={e => setForm(f => ({ ...f!, display_order: Number(e.target.value) || 0 }))}
-                className="w-full border border-navy/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
+                className={INPUT_CLASS} />
             </div>
           </div>
           {textField('cost_notes', t.admin.cost_notes)}
           {textField('ticket_url', t.admin.ticket_url, 'url')}
           <div className="flex gap-2 pt-2">
-            <button onClick={save} disabled={saving || !form.title}
-              className="px-4 py-2 bg-gold text-navy rounded-lg text-sm font-medium hover:brightness-105 disabled:opacity-50">
+            <BrandButton onClick={save} disabled={saving || !form.title}>
               {saving ? '...' : t.admin.save}
-            </button>
-            <button onClick={() => { setForm(null); setEditingId(null) }}
-              className="px-4 py-2 bg-navy/5 text-navy/70 rounded-lg text-sm hover:bg-navy/10">
+            </BrandButton>
+            <BrandButton variant="secondary" onClick={() => { setForm(null); setEditingId(null) }}>
               {t.admin.cancel}
-            </button>
+            </BrandButton>
           </div>
         </div>
       )}
@@ -123,14 +122,12 @@ export default function AdminActivitiesPage() {
             )}
           </div>
           <div className="flex gap-2 shrink-0">
-            <button onClick={() => startEdit(a)}
-              className="px-3 py-1.5 border border-navy/15 rounded-lg text-sm text-navy/70 hover:bg-navy/5">
+            <BrandButton variant="quiet" onClick={() => startEdit(a)}>
               {t.admin.edit}
-            </button>
-            <button onClick={() => remove(a.id)}
-              className="px-3 py-1.5 border border-red-200 rounded-lg text-sm text-red-600 hover:bg-red-50">
+            </BrandButton>
+            <BrandButton variant="danger-quiet" onClick={() => remove(a.id)}>
               {t.admin.delete}
-            </button>
+            </BrandButton>
           </div>
         </div>
       ))}
