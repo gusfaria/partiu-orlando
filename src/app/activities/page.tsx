@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '@/lib/auth-context'
 import { useI18n } from '@/lib/i18n/context'
 import { supabase } from '@/lib/supabase'
+import { sortActivitiesByDate } from '@/lib/activity-order'
 import { ActivityCard } from '@/components/ActivityCard'
 import { PageHeader } from '@/components/brand/PageHeader'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
@@ -19,7 +20,7 @@ function ActivitiesPage() {
       .from('activities')
       .select('*, activity_signups(*, profiles(*))')
       .order('display_order')
-    setActivities((data as ActivityWithSignups[]) ?? [])
+    setActivities(sortActivitiesByDate((data as ActivityWithSignups[]) ?? []))
     setLoading(false)
   }
 
