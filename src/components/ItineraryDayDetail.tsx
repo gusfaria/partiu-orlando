@@ -1,11 +1,12 @@
 'use client'
 import { useI18n } from '@/lib/i18n/context'
+import { pickLanguage } from '@/lib/bilingual'
 import type { CalendarItem, ItemType } from '@/lib/itinerary'
 
 type Props = { dateLabel: string; items: CalendarItem[]; onClose: () => void }
 
 export function ItineraryDayDetail({ dateLabel, items, onClose }: Props) {
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
 
   const typeLabel = (type: ItemType) =>
     type === 'arrival' ? t.itinerary.arrival
@@ -33,7 +34,7 @@ export function ItineraryDayDetail({ dateLabel, items, onClose }: Props) {
                 </span>
               </p>
               {item.detail.description && (
-                <p className="text-sm text-navy/70 mt-0.5">{item.detail.description}</p>
+                <p className="text-sm text-navy/70 mt-0.5 whitespace-pre-line">{pickLanguage(item.detail.description, lang)}</p>
               )}
               {item.detail.transportation && (
                 <p className="text-xs text-navy/60 mt-0.5">{t.itinerary.transportation}: {item.detail.transportation}</p>

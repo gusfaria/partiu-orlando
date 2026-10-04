@@ -51,4 +51,11 @@ describe('ActivityCard', () => {
     expect(screen.getByText('inclui estacionamento').textContent).toBe('inclui estacionamento')
     expect(screen.queryByText(/Custo por pessoa/)).not.toBeInTheDocument()
   })
+
+  it('shows only the half of a bilingual description that matches the language', () => {
+    renderCard(activity({ description: '::: English ::: Beach day.\n\n::: Português ::: Dia de praia.' }))
+    expect(screen.getByText('Dia de praia.')).toBeInTheDocument()
+    expect(screen.queryByText(/Beach day/)).not.toBeInTheDocument()
+    expect(screen.queryByText(/:::/)).not.toBeInTheDocument()
+  })
 })

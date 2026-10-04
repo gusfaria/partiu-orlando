@@ -122,7 +122,8 @@
     "marker_label": "Descrição",
     "marker_emoji": "Emoji",
     "marker_full_day": "Dia inteiro",
-    "eyebrow": "Bastidores"
+    "eyebrow": "Bastidores",
+    "description_hint": "Para os dois idiomas, escreva ::: English ::: antes do texto em inglês e ::: Português ::: antes do texto em português. O site mostra só o idioma escolhido."
   },
   "cars": {
     "section_title": "Carros dos Convidados",

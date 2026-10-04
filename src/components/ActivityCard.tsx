@@ -1,6 +1,7 @@
 'use client'
 import { useI18n } from '@/lib/i18n/context'
 import { activityMeta } from '@/lib/ticket-date'
+import { pickLanguage } from '@/lib/bilingual'
 import { AvatarCircle } from './AvatarCircle'
 import { BrandButton } from './brand/BrandButton'
 import { TicketBand } from './brand/TicketBand'
@@ -21,6 +22,7 @@ export function ActivityCard({ activity, isSignedUp, myPlusGuests, onToggle, onP
   const { t, lang } = useI18n()
   const locale = lang === 'pt' ? 'pt-BR' : 'en-US'
   const meta = activityMeta(activity.activity_time, activity.cost_per_person)
+  const description = pickLanguage(activity.description ?? '', lang)
   const totalHeadcount = activity.activity_signups.reduce((sum, s) => sum + 1 + s.plus_guests, 0)
 
   return (
@@ -29,8 +31,8 @@ export function ActivityCard({ activity, isSignedUp, myPlusGuests, onToggle, onP
 
       <div className="px-4 pt-3 pb-4">
         <h3 className="font-display text-lg font-bold leading-snug text-navy">{activity.title}</h3>
-        {activity.description && (
-          <p className="mt-1.5 text-sm leading-relaxed text-navy/70">{activity.description}</p>
+        {description && (
+          <p className="mt-1.5 text-sm leading-relaxed text-navy/70 whitespace-pre-line">{description}</p>
         )}
         {activity.cost_notes && (
           <p className="mt-2 text-xs text-navy/70">{activity.cost_notes}</p>

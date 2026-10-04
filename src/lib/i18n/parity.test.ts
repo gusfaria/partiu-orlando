@@ -13,7 +13,7 @@ describe('i18n', () => {
   })
 
   it('has the visual-polish keys', () => {
-    for (const k of ['home.boarding_pass', 'itinerary.eyebrow', 'house.eyebrow', 'profile.traveler', 'admin.eyebrow']) {
+    for (const k of ['home.boarding_pass', 'itinerary.eyebrow', 'house.eyebrow', 'profile.traveler', 'admin.eyebrow', 'admin.description_hint']) {
       expect(keys(pt)).toContain(k)
     }
   })

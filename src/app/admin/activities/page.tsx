@@ -80,9 +80,10 @@ export default function AdminActivitiesPage() {
           {textField('title', t.admin.activity_title)}
           <div>
             <label className={FIELD_LABEL_CLASS}>{t.admin.description}</label>
-            <textarea value={form.description ?? ''} rows={3}
+            <textarea value={form.description ?? ''} rows={6}
               onChange={e => setForm(f => ({ ...f!, description: e.target.value }))}
               className="w-full border border-navy/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold resize-none" />
+            <p className="mt-1 text-xs text-navy/70">{t.admin.description_hint}</p>
           </div>
           <div className="grid grid-cols-2 gap-3">
             {textField('activity_date', t.admin.activity_date, 'date')}
