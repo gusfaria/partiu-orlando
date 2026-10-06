@@ -16,6 +16,7 @@ describe('BoardingPass', () => {
     expect(screen.getByText('faltam')).toBeInTheDocument()
     expect(screen.getByText('dias para a viagem')).toBeInTheDocument()
     expect(screen.getByText('GIG, JFK, LAX → MCO')).toHaveClass('sr-only')
+    expect(screen.getByText('Rio')).toBeInTheDocument()
   })
 
   it('renders no empty prefix line in English (countdown_prefix is "")', () => {

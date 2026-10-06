@@ -49,4 +49,20 @@ describe('SplitFlap', () => {
     act(() => { vi.advanceTimersByTime(3200 + 2000) })
     expect(vi.getTimerCount()).toBe(1) // only the 3.2s cycle remains
   })
+
+  it('shows the caption of the settled code, blank while flipping', () => {
+    const captions = { GIG: 'Rio', JFK: 'NYC' }
+    const { container } = render(<SplitFlap codes={['GIG', 'JFK']} captions={captions} />)
+    const caption = () => container.querySelector('[data-caption]')!.textContent
+    expect(caption()).toBe('Rio')
+    act(() => { vi.advanceTimersByTime(3200 + 100) })
+    expect(caption()).toBe('')
+    act(() => { vi.advanceTimersByTime(2000) })
+    expect(caption()).toBe('NYC')
+  })
+
+  it('renders no caption element when no captions are given', () => {
+    const { container } = render(<SplitFlap codes={['MCO']} />)
+    expect(container.querySelector('[data-caption]')).toBeNull()
+  })
 })

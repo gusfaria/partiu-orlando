@@ -1,7 +1,7 @@
 'use client'
 import { useI18n } from '@/lib/i18n/context'
 import { daysUntilTrip } from '@/components/Countdown'
-import { TRIP_ORIGINS, TRIP_DESTINATION } from '@/lib/trip-origins'
+import { TRIP_ORIGINS, TRIP_DESTINATION, ORIGIN_CITIES } from '@/lib/trip-origins'
 import { SplitFlap } from './SplitFlap'
 
 const DESTINATION = [TRIP_DESTINATION]
@@ -17,10 +17,7 @@ export function BoardingPass() {
         <p className={LABEL}>{t.home.boarding_pass}</p>
         <p className="sr-only">{`${TRIP_ORIGINS.join(', ')} → ${TRIP_DESTINATION}`}</p>
         <div className="mt-1.5 flex items-start gap-2">
-          <div>
-            <SplitFlap codes={TRIP_ORIGINS} />
-            <p aria-hidden="true" className="mt-0.5 h-3" />
-          </div>
+          <SplitFlap codes={TRIP_ORIGINS} captions={ORIGIN_CITIES} />
           <span aria-hidden="true" className="text-sm leading-[30px] text-navy/60">✈</span>
           <div>
             <SplitFlap codes={DESTINATION} tone="gold" />
